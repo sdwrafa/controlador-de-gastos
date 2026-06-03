@@ -21,11 +21,11 @@
             --text-muted: #64748b;
             --border-color: #e2e8f0;
             
-            --logo-text: #6366f1;
-            --logo-accent: #4f46e5;
+            --logo-text: #2563eb;
+            --logo-accent: #1d4ed8;
             
-            --primary: #6366f1;
-            --primary-hover: #4f46e5;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
             --danger: #ef4444;
             --warning: #f59e0b;
             --success: #10b981;
@@ -39,11 +39,11 @@
             --text-muted: #94a3b8;
             --border-color: #4a245d;
             
-            --logo-text: #a78bfa;
-            --logo-accent: #c084fc;
+            --logo-text: #2563eb;
+            --logo-accent: #1d4ed8;
             
-            --primary: #a78bfa;
-            --primary-hover: #c084fc;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
         }
 
         * {
@@ -351,9 +351,9 @@
             color: white;
         }
         .btn-wish-edit {
-            background: rgba(99, 102, 241, 0.08);
+            background: rgba(37, 99, 235, 0.08);
             color: var(--primary);
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(37, 99, 235, 0.2);
         }
         .btn-wish-edit:hover {
             background: var(--primary);
@@ -362,11 +362,11 @@
         .btn-wish-commit {
             background: var(--primary);
             color: white;
-            box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
         }
         .btn-wish-commit:hover:not(:disabled) {
             transform: scale(1.02);
-            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
         }
         .btn-wish-commit:disabled {
             opacity: 0.4;
@@ -600,7 +600,7 @@
         .form-control:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
         /* === Inputs de Data — tema unificado === */
@@ -669,7 +669,7 @@
 
         input[type="date"].form-control:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
         }
 
         /* Firefox: deixa o input com aparência nativa mas alinhada */
@@ -1037,7 +1037,7 @@
             background-color: var(--primary);
             color: white;
             border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
 
         .picker-footer {
@@ -1287,7 +1287,7 @@
         .flatpickr-day.selected:hover {
             background: var(--primary) !important;
             color: #fff !important;
-            box-shadow: 0 4px 12px rgba(99,102,241,0.35);
+            box-shadow: 0 4px 12px rgba(37,99,235,0.35);
         }
         .flatpickr-day.prevMonthDay,
         .flatpickr-day.nextMonthDay {
@@ -1298,6 +1298,167 @@
         .flatpickr-day.flatpickr-disabled:hover {
             color: var(--text-muted) !important;
             opacity: 0.3;
+        }
+
+        /* Aparencia profissional clara */
+        :root,
+        [data-theme="dark"] {
+            --bg-page: #f5f7fb;
+            --bg-card: #ffffff;
+            --sidebar-bg: #eef3f8;
+            --text-main: #172033;
+            --text-muted: #667085;
+            --border-color: #d9e2ec;
+            --logo-text: #1f4e79;
+            --logo-accent: #2563eb;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --danger: #dc2626;
+            --warning: #d97706;
+            --success: #059669;
+        }
+
+        body {
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0.92), rgba(245,247,251,0.96)),
+                radial-gradient(circle at top left, rgba(37,99,235,0.08), transparent 34%);
+        }
+
+        .sidebar {
+            background: rgba(238, 243, 248, 0.96);
+            box-shadow: 1px 0 0 rgba(15, 23, 42, 0.04);
+        }
+
+        .sidebar-nav li a {
+            margin: 0.15rem 0.65rem;
+            border-radius: 8px;
+            padding: 0.78rem 0.95rem;
+        }
+
+        .sidebar-nav li a:hover {
+            background: #ffffff;
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+        }
+
+        .login-overlay {
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0.96), rgba(241,245,249,0.96)),
+                radial-gradient(circle at 15% 10%, rgba(37,99,235,0.10), transparent 28%);
+        }
+
+        .login-card,
+        .card,
+        .saving-card,
+        .expense-item,
+        .wish-item,
+        .smart-alert-card,
+        .summary-card {
+            border-radius: 8px !important;
+            border-color: var(--border-color);
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+        }
+
+        .card,
+        .login-card {
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+        }
+
+        .card h2,
+        .login-card h1 {
+            color: #172033;
+            letter-spacing: 0;
+        }
+
+        .form-control,
+        .budget-control input,
+        input[type="date"].form-control,
+        [data-theme="dark"] input[type="date"].form-control {
+            background: #ffffff;
+            border-color: #cbd5e1;
+            color: var(--text-main);
+            color-scheme: light;
+            border-radius: 7px;
+        }
+
+        .form-control:focus,
+        input[type="date"].form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+        }
+
+        .btn,
+        .btn-wish,
+        .theme-toggle-btn,
+        .picker-trigger {
+            border-radius: 7px !important;
+            box-shadow: none !important;
+        }
+
+        .btn-primary,
+        .btn-wish-commit {
+            background: var(--primary) !important;
+        }
+
+        .btn-primary:hover:not(:disabled),
+        .btn-wish-commit:hover:not(:disabled) {
+            background: var(--primary-hover) !important;
+            transform: translate3d(0, -1px, 0);
+        }
+
+        .btn-success {
+            background: var(--success);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+        }
+
+        .wish-item:hover,
+        .wish-item.editing-mode,
+        .saving-card:hover,
+        .expense-item:hover {
+            transform: translate3d(0, -1px, 0);
+            border-color: #b7c7d8;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+        }
+
+        .wish-timer,
+        .smart-alert-card.safe,
+        .smart-alert-card.warning,
+        .smart-alert-card.danger {
+            background: #f8fafc;
+        }
+
+        .category-badge {
+            border-radius: 999px;
+            font-size: 0.68rem;
+            padding: 0.22rem 0.55rem;
+        }
+
+        .cat-normal { background-color: #059669; }
+        .cat-inesperado { background-color: #dc2626; }
+        .cat-credito { background-color: #f59e0b; color: #172033; }
+        .cat-ganho { background-color: #2563eb; }
+
+        .progress-container {
+            background: #eaf0f6;
+            border-color: #d7e0ea;
+        }
+
+        .flatpickr-calendar,
+        .picker-dropdown,
+        .month-item {
+            border-radius: 8px !important;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.10) !important;
         }
 
         /* Refinos de performance e acessibilidade */
@@ -2891,7 +3052,7 @@
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (mainLineChart) { mainLineChart.data.labels = labels; mainLineChart.data.datasets[0].data = dataValues; mainLineChart.update('none'); }
-    else { mainLineChart = new Chart(ctx, { type: 'line', data: { labels, datasets: [{ label: 'Evolução da Banca (R$)', data: dataValues, borderColor: '#6366f1', backgroundColor: 'rgba(99, 102, 241, 0.12)', borderWidth: 3, tension: 0.35, fill: true, pointBackgroundColor: '#4f46e5', pointBorderColor: '#ffffff', pointRadius: 3, pointHoverRadius: 5 }] }, options: { responsive: true, maintainAspectRatio: false, animation: { duration: 450, easing: 'easeOutQuart' }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) { return ` R$ ${formatCurrency(context.parsed.y)}`; } } } }, scales: { x: { grid: { color: 'var(--border-color)' } }, y: { grid: { color: 'var(--border-color)' } } } } }); }
+    else { mainLineChart = new Chart(ctx, { type: 'line', data: { labels, datasets: [{ label: 'Evolução da Banca (R$)', data: dataValues, borderColor: '#2563eb', backgroundColor: 'rgba(37, 99, 235, 0.12)', borderWidth: 3, tension: 0.35, fill: true, pointBackgroundColor: '#1d4ed8', pointBorderColor: '#ffffff', pointRadius: 3, pointHoverRadius: 5 }] }, options: { responsive: true, maintainAspectRatio: false, animation: { duration: 450, easing: 'easeOutQuart' }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) { return ` R$ ${formatCurrency(context.parsed.y)}`; } } } }, scales: { x: { grid: { color: 'var(--border-color)' } }, y: { grid: { color: 'var(--border-color)' } } } } }); }
     updateChartStyles();
 }
 
@@ -2909,7 +3070,7 @@
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (myLineChart) { myLineChart.data.labels = labels; myLineChart.data.datasets[0].data = dataValues; myLineChart.update('none'); }
-    else { myLineChart = new Chart(ctx, { type: 'line', data: { labels, datasets: [{ label: 'Saldo Disponível Acumulado (R$)', data: dataValues, borderColor: '#6366f1', backgroundColor: 'rgba(99, 102, 241, 0.12)', borderWidth: 3, tension: 0.35, fill: true, pointBackgroundColor: '#4f46e5', pointBorderColor: '#ffffff', pointRadius: 4, pointHoverRadius: 6 }] }, options: { responsive: true, maintainAspectRatio: false, animation: { duration: 450, easing: 'easeOutQuart' }, plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { weight: 600 } } }, tooltip: { callbacks: { label: function(context) { return ` R$ ${formatCurrency(context.parsed.y)}`; } } } }, scales: { x: { title: { display: true, text: 'Dias do Mês Selecionado', font: { weight: 600 } }, grid: { color: 'var(--border-color)' } }, y: { title: { display: true, text: 'Valor Acumulado (R$)', font: { weight: 600 } }, grid: { color: 'var(--border-color)' } } } } }); }
+    else { myLineChart = new Chart(ctx, { type: 'line', data: { labels, datasets: [{ label: 'Saldo Disponível Acumulado (R$)', data: dataValues, borderColor: '#2563eb', backgroundColor: 'rgba(37, 99, 235, 0.12)', borderWidth: 3, tension: 0.35, fill: true, pointBackgroundColor: '#1d4ed8', pointBorderColor: '#ffffff', pointRadius: 4, pointHoverRadius: 6 }] }, options: { responsive: true, maintainAspectRatio: false, animation: { duration: 450, easing: 'easeOutQuart' }, plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { weight: 600 } } }, tooltip: { callbacks: { label: function(context) { return ` R$ ${formatCurrency(context.parsed.y)}`; } } } }, scales: { x: { title: { display: true, text: 'Dias do Mês Selecionado', font: { weight: 600 } }, grid: { color: 'var(--border-color)' } }, y: { title: { display: true, text: 'Valor Acumulado (R$)', font: { weight: 600 } }, grid: { color: 'var(--border-color)' } } } } }); }
     updateChartStyles();
 }
 
