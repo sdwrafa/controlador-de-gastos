@@ -1301,8 +1301,7 @@
         }
 
         /* Aparencia profissional clara */
-        :root,
-        [data-theme="dark"] {
+        :root {
             --bg-page: #f5f7fb;
             --bg-card: #ffffff;
             --sidebar-bg: #eef3f8;
@@ -1318,15 +1317,42 @@
             --success: #059669;
         }
 
+        [data-theme="dark"] {
+            --bg-page: #0f172a;
+            --bg-card: #182235;
+            --sidebar-bg: #111827;
+            --text-main: #eef2f7;
+            --text-muted: #a8b3c7;
+            --border-color: #2d3a4f;
+            --logo-text: #93c5fd;
+            --logo-accent: #60a5fa;
+            --primary: #60a5fa;
+            --primary-hover: #3b82f6;
+            --danger: #f87171;
+            --warning: #fbbf24;
+            --success: #34d399;
+        }
+
         body {
             background:
                 linear-gradient(180deg, rgba(255,255,255,0.92), rgba(245,247,251,0.96)),
                 radial-gradient(circle at top left, rgba(37,99,235,0.08), transparent 34%);
         }
 
+        [data-theme="dark"] body {
+            background:
+                linear-gradient(180deg, rgba(15,23,42,0.97), rgba(17,24,39,0.97)),
+                radial-gradient(circle at top left, rgba(96,165,250,0.12), transparent 34%);
+        }
+
         .sidebar {
             background: rgba(238, 243, 248, 0.96);
             box-shadow: 1px 0 0 rgba(15, 23, 42, 0.04);
+        }
+
+        [data-theme="dark"] .sidebar {
+            background: rgba(17, 24, 39, 0.98);
+            box-shadow: 1px 0 0 rgba(255, 255, 255, 0.04);
         }
 
         .sidebar-nav li a {
@@ -1340,6 +1366,11 @@
             box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
         }
 
+        [data-theme="dark"] .sidebar-nav li a:hover {
+            background: #1f2937;
+            box-shadow: none;
+        }
+
         header {
             background: rgba(255, 255, 255, 0.78);
             border: 1px solid var(--border-color);
@@ -1349,10 +1380,21 @@
             box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
         }
 
+        [data-theme="dark"] header {
+            background: rgba(24, 34, 53, 0.78);
+            box-shadow: none;
+        }
+
         .login-overlay {
             background:
                 linear-gradient(180deg, rgba(255,255,255,0.96), rgba(241,245,249,0.96)),
                 radial-gradient(circle at 15% 10%, rgba(37,99,235,0.10), transparent 28%);
+        }
+
+        [data-theme="dark"] .login-overlay {
+            background:
+                linear-gradient(180deg, rgba(15,23,42,0.97), rgba(17,24,39,0.97)),
+                radial-gradient(circle at 15% 10%, rgba(96,165,250,0.14), transparent 28%);
         }
 
         .login-card,
@@ -1378,6 +1420,11 @@
             letter-spacing: 0;
         }
 
+        [data-theme="dark"] .card h2,
+        [data-theme="dark"] .login-card h1 {
+            color: var(--text-main);
+        }
+
         .form-control,
         .budget-control input,
         input[type="date"].form-control,
@@ -1387,6 +1434,15 @@
             color: var(--text-main);
             color-scheme: light;
             border-radius: 7px;
+        }
+
+        [data-theme="dark"] .form-control,
+        [data-theme="dark"] .budget-control input,
+        [data-theme="dark"] input[type="date"].form-control {
+            background: #111827;
+            border-color: #334155;
+            color: var(--text-main);
+            color-scheme: dark;
         }
 
         .form-control:focus,
@@ -1438,6 +1494,16 @@
             background: #f8fafc;
         }
 
+        [data-theme="dark"] .wish-timer,
+        [data-theme="dark"] .smart-alert-card.safe,
+        [data-theme="dark"] .smart-alert-card.warning,
+        [data-theme="dark"] .smart-alert-card.danger,
+        [data-theme="dark"] .summary-card,
+        [data-theme="dark"] .expense-item,
+        [data-theme="dark"] .wish-item {
+            background: #182235;
+        }
+
         .category-badge {
             border-radius: 999px;
             font-size: 0.68rem;
@@ -1449,9 +1515,16 @@
         .cat-credito { background-color: #f59e0b; color: #172033; }
         .cat-ganho { background-color: #2563eb; }
 
+        [data-theme="dark"] .cat-credito { color: #111827; }
+
         .progress-container {
             background: #eaf0f6;
             border-color: #d7e0ea;
+        }
+
+        [data-theme="dark"] .progress-container {
+            background: #111827;
+            border-color: #334155;
         }
 
         .flatpickr-calendar,
