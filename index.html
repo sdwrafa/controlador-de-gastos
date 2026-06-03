@@ -466,6 +466,38 @@
             border-radius: 6px;
         }
 
+        body.auth-locked {
+            overflow: hidden;
+        }
+
+        body.auth-locked .sidebar,
+        body.auth-locked .main-content {
+            display: none !important;
+        }
+
+        .login-overlay {
+            inset: 0;
+            width: auto;
+            height: 100vh;
+            height: 100dvh;
+            min-height: 100vh;
+            background: var(--bg-page) !important;
+            isolation: isolate;
+            overscroll-behavior: contain;
+        }
+
+        .login-card {
+            position: relative;
+            z-index: 1;
+        }
+
+        .slider-captcha,
+        .slider-handle {
+            touch-action: none;
+            -webkit-user-drag: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -1932,7 +1964,7 @@
         }
     </style>
 </head>
-<body>
+<body class="auth-locked">
 
     <!-- TELA DE LOGIN -->
     <div id="login-screen" class="login-overlay">
@@ -2538,6 +2570,7 @@
     function toggleAuthScreens(screen) {
         const loginScreen = document.getElementById('login-screen');
         const signupScreen = document.getElementById('signup-screen');
+        setAuthLocked(true);
         
         if (screen === 'signup') {
             loginScreen.classList.add('hidden');
@@ -2557,27 +2590,70 @@
     const signupScreen = document.getElementById('signup-screen');
     let isDragging = false;
     let startX = 0;
+    let activePointerId = null;
+
+    function setAuthLocked(isLocked) {
+        document.body.classList.toggle('auth-locked', Boolean(isLocked));
+    }
+
+    function showAuthenticatedApp() {
+        loginScreen.classList.add('hidden');
+        signupScreen.classList.add('hidden');
+        setAuthLocked(false);
+    }
+
+    function showLoginGate() {
+        setAuthLocked(true);
+        signupScreen.classList.add('hidden');
+        loginScreen.classList.remove('hidden');
+    }
+
+    function releaseCaptchaPointer() {
+        if (activePointerId === null) return;
+        try {
+            handle.releasePointerCapture?.(activePointerId);
+        } catch (err) {}
+        activePointerId = null;
+    }
 
     // Inicializacao: restaura sessao real do Supabase, se existir.
     initAuth();
 
-    handle.addEventListener('mousedown', startDrag);
-    handle.addEventListener('touchstart', startDrag);
-    window.addEventListener('mousemove', drag);
-    window.addEventListener('touchmove', drag);
+    handle.addEventListener('pointerdown', startDrag, { passive: false });
+    handle.addEventListener('mousedown', startDrag, { passive: false });
+    handle.addEventListener('touchstart', startDrag, { passive: false });
+    window.addEventListener('pointermove', drag, { passive: false });
+    window.addEventListener('mousemove', drag, { passive: false });
+    window.addEventListener('touchmove', drag, { passive: false });
+    window.addEventListener('pointerup', endDrag);
+    window.addEventListener('pointercancel', endDrag);
     window.addEventListener('mouseup', endDrag);
     window.addEventListener('touchend', endDrag);
+    window.addEventListener('touchcancel', endDrag);
+
+    function getDragClientX(e) {
+        if (typeof e.clientX === 'number') return e.clientX;
+        if (e.touches?.length) return e.touches[0].clientX;
+        if (e.changedTouches?.length) return e.changedTouches[0].clientX;
+        return startX;
+    }
 
     function startDrag(e) {
         if (isCaptchaSolved) return;
+        if (isDragging) return;
+        e.preventDefault();
         isDragging = true;
-        startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+        startX = getDragClientX(e);
+        activePointerId = typeof e.pointerId === 'number' ? e.pointerId : null;
         handle.style.transition = 'none';
+        if (activePointerId !== null) handle.setPointerCapture?.(activePointerId);
     }
 
     function drag(e) {
         if (!isDragging || isCaptchaSolved) return;
-        const currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+        if (activePointerId !== null && e.pointerId !== activePointerId) return;
+        e.preventDefault();
+        const currentX = getDragClientX(e);
         let deltaX = currentX - startX;
         const maxDelta = slider.offsetWidth - handle.offsetWidth - 10;
 
@@ -2591,9 +2667,11 @@
         }
     }
 
-    function endDrag() {
+    function endDrag(e) {
         if (!isDragging || isCaptchaSolved) return;
+        if (activePointerId !== null && e.pointerId !== activePointerId) return;
         isDragging = false;
+        releaseCaptchaPointer();
         handle.style.transition = 'left 0.3s ease';
         handle.style.left = '5px';
     }
@@ -2601,6 +2679,7 @@
     function solveCaptcha() {
         isCaptchaSolved = true;
         isDragging = false;
+        releaseCaptchaPointer();
         slider.classList.add('success');
         document.querySelector('.slider-text').innerText = 'Verificado com sucesso!';
         loginBtn.disabled = false;
@@ -2634,9 +2713,11 @@
 
         if (data.session?.user) {
             currentUser = data.session.user;
-            loginScreen.classList.add('hidden');
             await loadUserData();
+            showAuthenticatedApp();
             render();
+        } else {
+            showLoginGate();
         }
     }
 
@@ -2655,8 +2736,8 @@
         }
 
         currentUser = data.user;
-        loginScreen.classList.add('hidden');
         await loadUserData();
+        showAuthenticatedApp();
         render();
         errorMsg.style.display = 'none';
     }
@@ -2692,8 +2773,7 @@
         if (data.session?.user) {
             currentUser = data.session.user;
             await saveToLocalStorage();
-            signupScreen.classList.add('hidden');
-            loginScreen.classList.add('hidden');
+            showAuthenticatedApp();
             render();
             return;
         }
@@ -2736,6 +2816,8 @@
 
     function resetCaptcha() {
         isCaptchaSolved = false;
+        isDragging = false;
+        releaseCaptchaPointer();
         slider.classList.remove('success');
         document.querySelector('.slider-text').innerText = 'Arraste para a direita →';
         handle.style.left = '5px';
@@ -2755,7 +2837,7 @@
             resetCaptcha();
             document.getElementById('login-email').value = '';
             document.getElementById('login-password').value = '';
-            loginScreen.classList.remove('hidden');
+            showLoginGate();
         }
     }
 
@@ -3490,4 +3572,244 @@
     } else {
         const canvas = document.getElementById('expenseChart');
         if (!canvas) return;
-        const ctx = ca
+        const ctx = canvas.getContext('2d');
+        myPieChart = new Chart(ctx, { type: 'doughnut', data: { labels: ['Comum', 'Inesperado', 'Crédito'], datasets: [{ data: dataValues, backgroundColor: ['#10b981', '#ef4444', '#f59e0b'], borderWidth: 2, borderColor: 'transparent' }] }, options: { responsive: true, maintainAspectRatio: false, animation: { duration: 450, easing: 'easeOutQuart' }, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12 } } }, cutout: '75%' } });
+    }
+    updateChartStyles();
+}
+
+
+
+    function renderMainLineChart() {
+    const initialBudget = parseFloat(budgetInput.value) || 0;
+    const { byDate } = getAnalytics();
+    const dates = [];
+    for (let i = 29; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); dates.push(d.toISOString().split('T')[0]); }
+    let balanceBefore = initialBudget;
+    expenses.forEach(exp => { if (exp.isoDate && exp.isoDate < dates[0]) balanceBefore += (exp.isIncome ? Number(exp.amount) || 0 : -(Number(exp.amount) || 0)); });
+    const labels = dates.map(dt => { const p = dt.split('-'); return `${p[2]}/${p[1]}`; });
+    const dataValues = [];
+    let runningBalance = balanceBefore;
+    dates.forEach(currentDate => { runningBalance += byDate.get(currentDate) || 0; dataValues.push(runningBalance); });
+    const canvas = document.getElementById('mainLineChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (mainLineChart) { mainLineChart.data.labels = labels; mainLineChart.data.datasets[0].data = dataValues; mainLineChart.update('none'); }
+    else { mainLineChart = new Chart(ctx, { type: 'line', data: { labels, datasets: [{ label: 'Evolução da Banca (R$)', data: dataValues, borderColor: '#2563eb', backgroundColor: 'rgba(37, 99, 235, 0.12)', borderWidth: 3, tension: 0.35, fill: true, pointBackgroundColor: '#1d4ed8', pointBorderColor: '#ffffff', pointRadius: 3, pointHoverRadius: 5 }] }, options: { responsive: true, maintainAspectRatio: false, animation: { duration: 450, easing: 'easeOutQuart' }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) { return ` R$ ${formatCurrency(context.parsed.y)}`; } } } }, scales: { x: { grid: { color: 'var(--border-color)' } }, y: { grid: { color: 'var(--border-color)' } } } } }); }
+    updateChartStyles();
+}
+
+    function renderLineChart() {
+    const targetMonthIso = `${selectedYear}-${String(selectedMonthIndex + 1).padStart(2, '0')}`;
+    const initialBudget = parseFloat(budgetInput.value) || 0;
+    const { byDate } = getAnalytics();
+    const daysInMonth = new Date(selectedYear, selectedMonthIndex + 1, 0).getDate();
+    let cumulativeBalance = initialBudget;
+    expenses.forEach(exp => { if (exp.isoDate && exp.isoDate.substring(0, 7) < targetMonthIso) cumulativeBalance += (exp.isIncome ? Number(exp.amount) || 0 : -(Number(exp.amount) || 0)); });
+    const labels = Array.from({ length: daysInMonth }, (_, i) => `${i + 1}`);
+    const dataValues = [];
+    for (let day = 1; day <= daysInMonth; day++) { const currentIsoDate = `${targetMonthIso}-${String(day).padStart(2, '0')}`; cumulativeBalance += byDate.get(currentIsoDate) || 0; dataValues.push(cumulativeBalance); }
+    const canvas = document.getElementById('lineChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (myLineChart) { myLineChart.data.labels = labels; myLineChart.data.datasets[0].data = dataValues; myLineChart.update('none'); }
+    else { myLineChart = new Chart(ctx, { type: 'line', data: { labels, datasets: [{ label: 'Saldo Disponível Acumulado (R$)', data: dataValues, borderColor: '#2563eb', backgroundColor: 'rgba(37, 99, 235, 0.12)', borderWidth: 3, tension: 0.35, fill: true, pointBackgroundColor: '#1d4ed8', pointBorderColor: '#ffffff', pointRadius: 4, pointHoverRadius: 6 }] }, options: { responsive: true, maintainAspectRatio: false, animation: { duration: 450, easing: 'easeOutQuart' }, plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { weight: 600 } } }, tooltip: { callbacks: { label: function(context) { return ` R$ ${formatCurrency(context.parsed.y)}`; } } } }, scales: { x: { title: { display: true, text: 'Dias do Mês Selecionado', font: { weight: 600 } }, grid: { color: 'var(--border-color)' } }, y: { title: { display: true, text: 'Valor Acumulado (R$)', font: { weight: 600 } }, grid: { color: 'var(--border-color)' } } } } }); }
+    updateChartStyles();
+}
+
+    async function addSavingGoal(e) {
+        e.preventDefault();
+        const titleInput = document.getElementById('sav-title');
+        const targetInput = document.getElementById('sav-target');
+
+        const goal = {
+            id: Date.now(),
+            title: titleInput.value.trim(),
+            target: parseFloat(targetInput.value),
+            current: 0
+        };
+
+        savings.push(goal);
+        await saveToLocalStorage();
+        document.getElementById('saving-form').reset();
+        renderSavings();
+    }
+
+    function deleteSavingGoal(id) {
+        if(confirm("Deseja realmente excluir esta meta de economia? O dinheiro já transferido para ela continuará registrado como saída no seu histórico principal.")) {
+            savings = savings.filter(s => s.id !== id);
+            saveToLocalStorage();
+            renderSavings();
+        }
+    }
+
+    function addFundsToGoal(id) {
+        const amountStr = prompt("Quanto você deseja guardar agora para esta meta? (Use ponto ou vírgula para centavos)");
+        if (!amountStr) return;
+        
+        const amount = parseFloat(amountStr.replace(',', '.'));
+        
+        if (isNaN(amount) || amount <= 0) {
+            alert("Por favor, insira um valor válido maior que zero.");
+            return;
+        }
+
+        const goalIndex = savings.findIndex(s => s.id === id);
+        if (goalIndex > -1) {
+            const goal = savings[goalIndex];
+            
+            if (goal.current + amount > goal.target) {
+                alert(`O valor máximo que falta para atingir a meta é R$ ${formatCurrency(goal.target - goal.current)}.`);
+                return;
+            }
+
+            goal.current += amount;
+            
+            const expense = {
+                id: Date.now(),
+                title: `[Economia] Guardado: ${goal.title}`,
+                description: "Valor reservado automaticamente para meta.",
+                amount: amount,
+                category: "Comum",
+                date: new Date().toISOString().split('T')[0].split('-').reverse().join('/'),
+                isoDate: new Date().toISOString().split('T')[0], 
+                isIncome: false
+            };
+            
+            expenses.unshift(expense); 
+            
+            saveToLocalStorage();
+            render(); 
+        }
+    }
+
+    function removeFundsFromGoal(id) {
+        const goalIndex = savings.findIndex(s => s.id === id);
+        if (goalIndex === -1) return;
+        
+        const goal = savings[goalIndex];
+
+        if (goal.current <= 0) {
+            alert("Não há saldo para retirar nesta meta.");
+            return;
+        }
+
+        const wantsToWithdraw = confirm("Você realmente precisa retirar esse dinheiro? Seu sonho se distância cada vez mais :(");
+        if (!wantsToWithdraw) return;
+
+        const amountStr = prompt(`Quanto deseja retirar? (Máximo disponível: R$ ${formatCurrency(goal.current)})`);
+        if (!amountStr) return;
+        
+        const amount = parseFloat(amountStr.replace(',', '.'));
+        
+        if (isNaN(amount) || amount <= 0) {
+            alert("Por favor, insira um valor válido maior que zero.");
+            return;
+        }
+
+        if (amount > goal.current) {
+            alert(`Saldo insuficiente na meta. O valor máximo para retirada é R$ ${formatCurrency(goal.current)}.`);
+            return;
+        }
+
+        goal.current -= amount;
+        
+        const income = {
+            id: Date.now(),
+            title: `[Economia] Resgate: ${goal.title}`,
+            description: "Valor resgatado da meta e devolvido ao caixa livre.",
+            amount: amount,
+            category: "Ganho", 
+            date: new Date().toISOString().split('T')[0].split('-').reverse().join('/'),
+            isoDate: new Date().toISOString().split('T')[0], 
+            isIncome: true
+        };
+        
+        expenses.unshift(income); 
+        
+        saveToLocalStorage();
+        render(); 
+    }
+
+    function renderSavings() {
+        const list = document.getElementById('savings-list');
+        list.innerHTML = '';
+
+        if (savings.length === 0) {
+            list.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 1.5rem 0;">Nenhuma meta de economia criada.</p>';
+            return;
+        }
+
+        const fragment = document.createDocumentFragment();
+
+        savings.forEach(goal => {
+            const pct = Math.min((goal.current / goal.target) * 100, 100);
+            const isCompleted = pct >= 100;
+            
+            const card = document.createElement('div');
+            card.className = 'saving-card';
+            card.style.borderLeft = isCompleted ? '4px solid var(--success)' : '4px solid var(--primary)';
+            
+            card.innerHTML = `
+                <div class="saving-header">
+                    <span class="saving-title">${goal.title}</span>
+                    <button class="btn-delete" style="margin-top: 0; padding: 0.2rem;" title="Deletar Meta" onclick="deleteSavingGoal(${goal.id})">
+                        <svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </button>
+                </div>
+                
+                <div>
+                    <div class="saving-amounts">
+                        <span style="color: var(--text-main);">R$ ${formatCurrency(goal.current)} guardados</span>
+                        <span style="color: var(--text-muted);">Alvo: R$ ${formatCurrency(goal.target)}</span>
+                    </div>
+                    <div class="progress-container" style="height: 12px;">
+                        <div class="progress-bar" style="width: ${pct}%; background-color: ${isCompleted ? 'var(--success)' : 'var(--primary)'}"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.4rem;">
+                        <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">${pct.toFixed(1)}%</span>
+                        ${isCompleted ? '<span style="font-size: 0.75rem; color: var(--success); font-weight: 700;">Parabéns! Meta Atingida! 🎉</span>' : ''}
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 0.5rem; margin-top: auto;">
+                    <button class="btn ${isCompleted ? 'btn-success' : 'btn-primary'}" 
+                            style="flex: 1; padding: 0.6rem; font-size: 0.85rem;" 
+                            ${isCompleted ? 'disabled style="opacity: 0.6; cursor: not-allowed;"' : ''}
+                            onclick="addFundsToGoal(${goal.id})">
+                        ${isCompleted ? 'Concluída' : 'Guardar'}
+                    </button>
+                    <button class="btn" 
+                            style="flex: 1; padding: 0.6rem; font-size: 0.85rem; background-color: transparent; border: 1px solid var(--border-color); color: var(--text-main);" 
+                            ${goal.current === 0 ? 'disabled style="opacity: 0.4; cursor: not-allowed;"' : ''}
+                            onclick="removeFundsFromGoal(${goal.id})">
+                        Retirar
+                    </button>
+                </div>
+            `;
+            fragment.appendChild(card);
+        });
+
+        list.appendChild(fragment);
+    }
+
+    function render() {
+        renderExpenses();
+        try {
+            updateSummary();
+        } catch (error) {
+            console.error('Falha ao atualizar graficos e resumo:', error);
+        }
+        renderSavings();
+        renderWishes();
+        renderMonthComparison();
+        renderTopExpenses();
+    }
+
+    if (currentUser) render();
+    
+    // Timer para atualizar os relógios da quarentena a cada minuto
+    setInterval(renderWishes, 60000);
+</script>
+</body>
+</html>
