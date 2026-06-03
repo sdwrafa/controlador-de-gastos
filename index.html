@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <style>
         /* VARIÁVEIS DE CORES */
@@ -1934,8 +1935,11 @@
     document.documentElement.setAttribute('data-theme', currentTheme);
 
     // --- LÓGICA DE BANCO DE DADOS E AUTENTICAÇÃO ---
+    const SUPABASE_URL = 'https://dlqxtqnrnrztqazxirdo.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRscXh0cW5ybnJ6dHFhenhpcmRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Mzc5NDgsImV4cCI6MjA5NjAxMzk0OH0.-rim3b8-uIjXXjvdb-V6aKQ4m5IXhMT8KV9M6L4I2LA';
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
     let currentUser = null;
-    let users = JSON.parse(localStorage.getItem('users_rp')) || [];
 
     function toggleAuthScreens(screen) {
         const loginScreen = document.getElementById('login-screen');
@@ -1960,17 +1964,8 @@
     let isDragging = false;
     let startX = 0;
 
-    // Inicialização: Verifica se já está logado
-    const loggedInEmail = sessionStorage.getItem('isLoggedInEmail');
-    if (loggedInEmail) {
-        currentUser = users.find(u => u.email === loggedInEmail);
-        if (currentUser) {
-            loginScreen.classList.add('hidden');
-            loadUserData();
-            // Pequeno delay para garantir que o DOM carregou
-            setTimeout(() => render(), 100);
-        }
-    }
+    // Inicializacao: restaura sessao real do Supabase, se existir.
+    initAuth();
 
     handle.addEventListener('mousedown', startDrag);
     handle.addEventListener('touchstart', startDrag);
@@ -2019,28 +2014,60 @@
         loginBtn.style.cursor = 'pointer';
     }
 
-    function handleLogin(e) {
+    function getDefaultAppState() {
+        return { expenses: [], savings: [], wishes: [], budget: 3000, theme: currentTheme };
+    }
+
+    function getLegacyLocalState(email) {
+        try {
+            const users = JSON.parse(localStorage.getItem('users_rp') || '[]');
+            const oldUser = users.find(u => String(u.email || '').toLowerCase() === String(email || '').toLowerCase());
+            if (oldUser?.data) return oldUser.data;
+        } catch (err) {}
+
+        return {
+            expenses: JSON.parse(localStorage.getItem('expenses_rp') || '[]'),
+            savings: JSON.parse(localStorage.getItem('savings_rp') || '[]'),
+            wishes: [],
+            budget: localStorage.getItem('budget_rp') || 3000,
+            theme: localStorage.getItem('theme_rp') || currentTheme
+        };
+    }
+
+    async function initAuth() {
+        const { data, error } = await supabaseClient.auth.getSession();
+        if (error) console.warn('Falha ao restaurar sessão:', error.message);
+
+        if (data.session?.user) {
+            currentUser = data.session.user;
+            loginScreen.classList.add('hidden');
+            await loadUserData();
+            render();
+        }
+    }
+
+    async function handleLogin(e) {
         e.preventDefault();
         const email = document.getElementById('login-email').value.toLowerCase().trim();
         const password = document.getElementById('login-password').value;
         const errorMsg = document.getElementById('login-error-msg');
 
-        const user = users.find(u => u.email === email && u.password === password);
-
-        if (user) {
-            currentUser = user;
-            sessionStorage.setItem('isLoggedInEmail', email);
-            loginScreen.classList.add('hidden');
-            loadUserData();
-            render();
-            errorMsg.style.display = 'none';
-        } else {
+        const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+        if (error || !data.user) {
+            errorMsg.innerText = error?.message || 'E-mail ou senha incorretos.';
             errorMsg.style.display = 'block';
             resetCaptcha();
+            return;
         }
+
+        currentUser = data.user;
+        loginScreen.classList.add('hidden');
+        await loadUserData();
+        render();
+        errorMsg.style.display = 'none';
     }
 
-    function handleSignup(e) {
+    async function handleSignup(e) {
         e.preventDefault();
         const name = document.getElementById('signup-name').value.trim();
         const email = document.getElementById('signup-email').value.toLowerCase().trim();
@@ -2048,45 +2075,66 @@
         const errorMsg = document.getElementById('signup-error-msg');
         const successMsg = document.getElementById('signup-success-msg');
 
-        if (users.find(u => u.email === email)) {
+        const { data, error } = await supabaseClient.auth.signUp({
+            email,
+            password,
+            options: { data: { full_name: name } }
+        });
+
+        if (error) {
+            errorMsg.innerText = error.message;
             errorMsg.style.display = 'block';
             successMsg.style.display = 'none';
             return;
         }
 
-        const newUser = {
-            name,
-            email,
-            password,
-            data: {
-                expenses: [],
-                savings: [],
-                budget: 3000
-            }
-        };
-
-        users.push(newUser);
-        localStorage.setItem('users_rp', JSON.stringify(users));
-        
         errorMsg.style.display = 'none';
+        successMsg.innerText = data.session ? 'Conta criada com sucesso!' : 'Conta criada. Se o Supabase solicitar, confirme seu e-mail antes de entrar.';
         successMsg.style.display = 'block';
-        
+
+        if (data.session?.user) {
+            currentUser = data.session.user;
+            await saveToLocalStorage();
+            signupScreen.classList.add('hidden');
+            loginScreen.classList.add('hidden');
+            render();
+            return;
+        }
+
         setTimeout(() => {
             toggleAuthScreens('login');
             successMsg.style.display = 'none';
             document.getElementById('signup-form').reset();
-        }, 1500);
+        }, 1800);
     }
 
-    function loadUserData() {
-        if (currentUser && currentUser.data) {
-            expenses = currentUser.data.expenses || [];
-            savings = currentUser.data.savings || [];
-            wishes = currentUser.data.wishes || [];
-            budgetInput.value = currentUser.data.budget || 3000;
-            processRecurringExpenses();
-            invalidateAnalytics();
+    async function loadUserData() {
+        if (!currentUser) return;
+
+        const { data, error } = await supabaseClient
+            .from('app_state')
+            .select('data')
+            .eq('user_id', currentUser.id)
+            .maybeSingle();
+
+        if (error) {
+            alert('Não foi possível carregar seus dados online: ' + error.message);
+            return;
         }
+
+        const state = data?.data || getLegacyLocalState(currentUser.email) || getDefaultAppState();
+        expenses = Array.isArray(state.expenses) ? state.expenses : [];
+        savings = Array.isArray(state.savings) ? state.savings : [];
+        wishes = Array.isArray(state.wishes) ? state.wishes : [];
+        budgetInput.value = state.budget || 3000;
+        if (state.theme === 'light' || state.theme === 'dark') {
+            currentTheme = state.theme;
+            document.documentElement.setAttribute('data-theme', currentTheme);
+        }
+
+        if (!data) await saveToLocalStorage();
+        processRecurringExpenses();
+        invalidateAnalytics();
     }
 
     function resetCaptcha() {
@@ -2099,10 +2147,14 @@
         loginBtn.style.cursor = 'not-allowed';
     }
 
-    function handleLogout() {
-        if (confirm("Deseja realmente sair do sistema?")) {
-            sessionStorage.removeItem('isLoggedInEmail');
+    async function handleLogout() {
+        if (confirm('Deseja realmente sair do sistema?')) {
+            await supabaseClient.auth.signOut();
             currentUser = null;
+            expenses = [];
+            savings = [];
+            wishes = [];
+            invalidateAnalytics();
             resetCaptcha();
             document.getElementById('login-email').value = '';
             document.getElementById('login-password').value = '';
@@ -2114,6 +2166,7 @@
         currentTheme = currentTheme === 'light' ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', currentTheme);
         localStorage.setItem('theme_rp', currentTheme);
+        saveToLocalStorage();
         updateChartStyles();
     }
 
@@ -2202,21 +2255,24 @@
         updateSummary();
     }
 
-    function saveToLocalStorage() {
+    async function saveToLocalStorage() {
         invalidateAnalytics();
-        if (currentUser) {
-            currentUser.data = {
-                expenses: expenses,
-                savings: savings,
-                wishes: wishes,
-                budget: budgetInput.value
-            };
-            // Atualiza o array de usuários
-            const userIndex = users.findIndex(u => u.email === currentUser.email);
-            if (userIndex > -1) {
-                users[userIndex] = currentUser;
-                localStorage.setItem('users_rp', JSON.stringify(users));
-            }
+        if (!currentUser) return;
+
+        const payload = {
+            expenses,
+            savings,
+            wishes,
+            budget: budgetInput.value,
+            theme: currentTheme
+        };
+
+        const { error } = await supabaseClient
+            .from('app_state')
+            .upsert({ user_id: currentUser.id, data: payload }, { onConflict: 'user_id' });
+
+        if (error) {
+            console.error('Falha ao salvar no Supabase:', error.message);
         }
     }
 
