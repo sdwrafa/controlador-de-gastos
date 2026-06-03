@@ -1936,6 +1936,7 @@
 
     // --- LÓGICA DE BANCO DE DADOS E AUTENTICAÇÃO ---
     const SUPABASE_URL = 'https://dlqxtqnrnrztqazxirdo.supabase.co';
+    const APP_URL = 'https://sdwrafa.github.io/controlador-de-gastos/';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRscXh0cW5ybnJ6dHFhenhpcmRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Mzc5NDgsImV4cCI6MjA5NjAxMzk0OH0.-rim3b8-uIjXXjvdb-V6aKQ4m5IXhMT8KV9M6L4I2LA';
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -2078,7 +2079,10 @@
         const { data, error } = await supabaseClient.auth.signUp({
             email,
             password,
-            options: { data: { full_name: name } }
+            options: {
+                data: { full_name: name },
+                emailRedirectTo: APP_URL
+            }
         });
 
         if (error) {
@@ -2255,6 +2259,34 @@
         updateSummary();
     }
 
+    function setDateField(input, isoDate) {
+        if (!input) return;
+        if (input._flatpickr) {
+            input._flatpickr.setDate(isoDate, false);
+        } else {
+            input.value = isoDate;
+        }
+    }
+
+    function resetExpenseForm() {
+        if (expenseForm) expenseForm.reset();
+        titleInput.value = '';
+        descInput.value = '';
+        amountInput.value = '';
+        catInput.value = 'Comum';
+        isRecurringCheckbox.checked = false;
+        document.getElementById('installments').value = 1;
+        setDateField(dateInput, new Date().toISOString().split('T')[0]);
+    }
+
+    function resetIncomeForm() {
+        if (incomeForm) incomeForm.reset();
+        incTitle.value = '';
+        incDesc.value = '';
+        incAmount.value = '';
+        setDateField(incDate, new Date().toISOString().split('T')[0]);
+    }
+
     async function saveToLocalStorage() {
         invalidateAnalytics();
         if (!currentUser) return;
@@ -2334,7 +2366,7 @@
         }
     });
 
-    function addExpense(e) {
+    async function addExpense(e) {
         e.preventDefault();
         const isRecurring = isRecurringCheckbox.checked;
         const installments = Math.max(1, Math.min(36, parseInt(document.getElementById('installments').value) || 1));
@@ -2348,13 +2380,13 @@
             d.setMonth(d.getMonth() + i);
             const iso = d.toISOString().split('T')[0];
             const parts = iso.split('-');
-            const formattedDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
-            const titleSuffix = installments > 1 ? ` (${i+1}/${installments})` : '';
+            const formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0];
+            const titleSuffix = installments > 1 ? ' (' + (i + 1) + '/' + installments + ')' : "";
 
             expenses.unshift({
                 id: Date.now() + i,
                 title: titleInput.value.trim() + titleSuffix,
-                description: descInput.value.trim() || "Sem descrição",
+                description: descInput.value.trim() || 'Sem descrição',
                 amount: perInstallment,
                 category: catInput.value,
                 date: formattedDate,
@@ -2368,11 +2400,9 @@
             });
         }
 
-        saveToLocalStorage();
+        await saveToLocalStorage();
+        resetExpenseForm();
         render();
-        expenseForm.reset();
-        document.getElementById('installments').value = 1;
-        dateInput.value = new Date().toISOString().split('T')[0];
     }
 
     function editExpense(id) {
@@ -2392,27 +2422,26 @@
         render();
     }
 
-    function addIncome(e) {
+    async function addIncome(e) {
         e.preventDefault();
         const parts = incDate.value.split('-');
-        const formattedDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
+        const formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0];
 
         const income = {
             id: Date.now(),
             title: incTitle.value.trim(),
-            description: incDesc.value.trim() || "Sem descrição",
+            description: incDesc.value.trim() || 'Sem descrição',
             amount: parseFloat(incAmount.value),
-            category: "Ganho",
+            category: 'Ganho',
             date: formattedDate,
-            isoDate: incDate.value, 
+            isoDate: incDate.value,
             isIncome: true
         };
 
         expenses.unshift(income);
-        saveToLocalStorage();
+        await saveToLocalStorage();
+        resetIncomeForm();
         render();
-        incomeForm.reset();
-        incDate.value = new Date().toISOString().split('T')[0];
     }
 
     function deleteExpense(id) {
@@ -2432,25 +2461,25 @@
     }
 
     // --- LÓGICA DA QUARENTENA DE DESEJOS ---
-    function addWish(e) {
+    async function addWish(e) {
         e.preventDefault();
         const title = document.getElementById('wish-title').value;
         const category = document.getElementById('wish-category').value;
         const amount = parseFloat(document.getElementById('wish-amount').value);
-        
+
         const newWish = {
             id: Date.now(),
             title,
             category,
             amount,
             createdAt: Date.now(),
-            unlockAt: Date.now() + (48 * 60 * 60 * 1000) // 48 horas
+            unlockAt: Date.now() + (48 * 60 * 60 * 1000)
         };
 
         wishes.push(newWish);
-        saveToLocalStorage();
-        renderWishes();
+        await saveToLocalStorage();
         e.target.reset();
+        renderWishes();
     }
 
     function editWishInPlace(id) {
@@ -2884,7 +2913,7 @@
     updateChartStyles();
 }
 
-    function addSavingGoal(e) {
+    async function addSavingGoal(e) {
         e.preventDefault();
         const titleInput = document.getElementById('sav-title');
         const targetInput = document.getElementById('sav-target');
@@ -2897,9 +2926,9 @@
         };
 
         savings.push(goal);
-        saveToLocalStorage();
-        renderSavings();
+        await saveToLocalStorage();
         document.getElementById('saving-form').reset();
+        renderSavings();
     }
 
     function deleteSavingGoal(id) {
