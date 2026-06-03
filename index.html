@@ -1534,6 +1534,365 @@
             box-shadow: 0 12px 28px rgba(15, 23, 42, 0.10) !important;
         }
 
+        /* Responsividade mobile */
+        @media (max-width: 900px) {
+            body {
+                display: block;
+                min-width: 0;
+            }
+
+            .main-content,
+            .sidebar:hover ~ .main-content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 1rem;
+                padding-bottom: 6.75rem;
+            }
+
+            .sidebar {
+                top: auto;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                width: 100% !important;
+                height: auto;
+                min-height: 74px;
+                padding: 0.45rem 0.35rem calc(0.45rem + env(safe-area-inset-bottom));
+                border-right: none;
+                border-top: 1px solid var(--border-color);
+                overflow-x: auto;
+                overflow-y: hidden;
+                box-shadow: 0 -10px 24px rgba(15, 23, 42, 0.08);
+            }
+
+            .sidebar-trigger,
+            .sidebar-logo {
+                display: none;
+            }
+
+            .sidebar-nav {
+                display: flex;
+                align-items: stretch;
+                gap: 0.25rem;
+                min-width: max-content;
+                padding: 0;
+            }
+
+            .sidebar-nav li {
+                flex: 0 0 74px;
+                display: flex;
+            }
+
+            .sidebar-nav li[style] {
+                margin-top: 0 !important;
+            }
+
+            .sidebar-nav li a,
+            .sidebar:hover .sidebar-nav li a {
+                width: 100%;
+                min-height: 58px;
+                margin: 0;
+                padding: 0.45rem 0.35rem;
+                justify-content: center;
+                flex-direction: column;
+                gap: 0.2rem;
+                border-radius: 8px;
+                text-align: center;
+            }
+
+            .sidebar-nav li a[style] {
+                border-top: none !important;
+            }
+
+            .nav-icon {
+                width: 20px;
+                height: 20px;
+                min-width: 20px;
+            }
+
+            .nav-text,
+            .sidebar:hover .nav-text {
+                opacity: 1;
+                transform: none;
+                max-width: 68px;
+                color: var(--text-muted);
+                font-size: 0.64rem;
+                line-height: 1.1;
+                white-space: normal;
+            }
+
+            header {
+                align-items: stretch;
+                margin-bottom: 1rem;
+                padding: 0.9rem;
+            }
+
+            header > div:first-child {
+                font-size: 1.15rem !important;
+                line-height: 1.25;
+            }
+
+            header > div:first-child span:last-child {
+                display: block;
+                margin-top: 0.15rem;
+            }
+
+            .header-actions {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+                width: 100%;
+            }
+
+            .theme-toggle-btn,
+            .budget-control {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .budget-control input {
+                width: min(160px, 48vw);
+            }
+
+            .container {
+                display: grid;
+                grid-template-columns: 1fr !important;
+                gap: 1rem;
+                max-width: 100%;
+                padding: 0;
+            }
+
+            #dashboard-column,
+            #forms-column {
+                grid-column: auto !important;
+                gap: 1rem !important;
+                min-width: 0;
+            }
+
+            .card,
+            .login-card,
+            .saving-card {
+                padding: 1rem;
+                min-width: 0;
+            }
+
+            .card h2,
+            .login-card h1 {
+                font-size: 1.05rem;
+                line-height: 1.25;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .forms-grid,
+            .savings-grid,
+            .quarantine-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem;
+            }
+
+            .summary-box {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.75rem;
+            }
+
+            .summary-card {
+                padding: 0.85rem 0.65rem;
+            }
+
+            .summary-card span {
+                font-size: 0.75rem;
+            }
+
+            .summary-card p {
+                font-size: clamp(1rem, 5vw, 1.2rem);
+                overflow-wrap: anywhere;
+            }
+
+            .smart-alert-card {
+                align-items: flex-start;
+                gap: 0.75rem;
+                padding: 0.95rem;
+            }
+
+            .alert-icon {
+                font-size: 1.35rem;
+                line-height: 1;
+            }
+
+            .chart-container {
+                width: min(240px, 72vw);
+                height: min(240px, 72vw);
+            }
+
+            .main-line-chart-container,
+            .line-chart-container {
+                height: 280px;
+                margin-top: 1rem;
+            }
+
+            .chart-filters {
+                padding: 1rem;
+                gap: 0.75rem;
+            }
+
+            .chart-filters .form-group,
+            .chart-filters > div {
+                min-width: 100% !important;
+                width: 100%;
+            }
+
+            .picker-dropdown {
+                width: min(320px, calc(100vw - 2rem));
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .flatpickr-calendar {
+                max-width: calc(100vw - 1.5rem) !important;
+            }
+
+            #view-historico .card h2 {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            #filter-category {
+                width: 100%;
+                min-height: 42px;
+            }
+
+            #view-historico section.card > div[style*="grid-template-columns"],
+            #income-form div[style*="grid-template-columns"],
+            #expense-form div[style*="grid-template-columns"],
+            #saving-form div[style*="grid-template-columns"],
+            .saving-card div[style*="grid-template-columns"],
+            .wish-item div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            .expense-list {
+                max-height: none;
+                overflow-y: visible;
+            }
+
+            .expense-item {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.9rem;
+                padding: 1rem;
+            }
+
+            .expense-details,
+            .expense-value,
+            .saving-header,
+            .saving-amounts {
+                min-width: 0;
+            }
+
+            .expense-value {
+                text-align: left;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 0.5rem 0.75rem;
+            }
+
+            .expense-value p {
+                width: 100%;
+                font-size: 1.05rem !important;
+            }
+
+            .btn-delete {
+                min-height: 36px;
+                padding: 0.35rem 0.25rem;
+                margin-top: 0;
+                font-size: 0.82rem;
+            }
+
+            .login-overlay {
+                align-items: flex-start;
+                overflow-y: auto;
+                padding: 1rem;
+                padding-top: max(1rem, env(safe-area-inset-top));
+            }
+
+            .login-card {
+                width: min(100%, 420px);
+                margin: auto 0;
+            }
+
+            section.card[style*="min-height: 550px"] {
+                min-height: auto !important;
+            }
+
+            input,
+            select,
+            textarea {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 0.75rem;
+                padding-bottom: 6.5rem;
+            }
+
+            header {
+                border-radius: 8px;
+            }
+
+            .card,
+            .login-card,
+            .saving-card,
+            .wish-item,
+            .expense-item {
+                padding: 0.85rem;
+            }
+
+            .form-group {
+                margin-bottom: 1rem;
+            }
+
+            .form-control,
+            .btn,
+            .theme-toggle-btn,
+            .picker-trigger {
+                min-height: 44px;
+            }
+
+            .summary-box {
+                grid-template-columns: 1fr;
+            }
+
+            .months-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .picker-footer {
+                gap: 0.75rem;
+            }
+
+            .picker-footer button {
+                min-height: 36px;
+            }
+
+            .line-chart-container,
+            .main-line-chart-container {
+                height: 240px;
+            }
+
+            .sidebar-nav li {
+                flex-basis: 70px;
+            }
+
+            .nav-text {
+                max-width: 64px;
+                font-size: 0.6rem;
+            }
+        }
+
         /* Refinos de performance e acessibilidade */
         .card,
         .expense-item,
@@ -2426,6 +2785,35 @@
         }[char]));
     }
 
+    function updateChartStyles() {
+        if (typeof Chart === 'undefined') return;
+
+        const styles = getComputedStyle(document.documentElement);
+        const textColor = styles.getPropertyValue('--text-main').trim() || '#172033';
+        const mutedColor = styles.getPropertyValue('--text-muted').trim() || '#667085';
+        const borderColor = styles.getPropertyValue('--border-color').trim() || '#d9e2ec';
+
+        Chart.defaults.color = mutedColor;
+        Chart.defaults.font.family = "'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+
+        [myPieChart, myLineChart, mainLineChart].forEach(chart => {
+            if (!chart) return;
+
+            const legend = chart.options.plugins?.legend?.labels;
+            if (legend) legend.color = mutedColor;
+
+            if (chart.options.scales) {
+                Object.values(chart.options.scales).forEach(scale => {
+                    if (scale.ticks) scale.ticks.color = mutedColor;
+                    if (scale.title) scale.title.color = textColor;
+                    if (scale.grid) scale.grid.color = borderColor;
+                });
+            }
+
+            chart.update('none');
+        });
+    }
+
     function debounce(fn, delay = 180) {
         let timer;
         return function(...args) {
@@ -2948,7 +3336,7 @@
         const prev = prevDate.toISOString().substring(0,7);
 
         const sumMonth = (m) => expenses.filter(e => !e.isIncome && e.isoDate && e.isoDate.startsWith(m))
-            .reduce((a,b)=>a+b.amount, 0);
+            .reduce((total, expense)=> total + (Number(expense.amount) || 0), 0);
         const curSum = sumMonth(cur);
         const prevSum = sumMonth(prev);
         const diff = curSum - prevSum;
@@ -2971,7 +3359,7 @@
         const cur = new Date().toISOString().substring(0,7);
         const top = expenses
             .filter(e => !e.isIncome && e.isoDate && e.isoDate.startsWith(cur))
-            .sort((a,b)=>b.amount-a.amount)
+            .sort((a,b)=>(Number(b.amount) || 0) - (Number(a.amount) || 0))
             .slice(0,5);
         if (top.length === 0) {
             box.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">Nenhum gasto neste mês ainda.</p>';
@@ -2979,8 +3367,8 @@
         }
         box.innerHTML = top.map(e => `
             <div style="display:flex; justify-content:space-between; padding:0.5rem; background:var(--bg-page); border-radius:6px;">
-                <span style="font-size:0.85rem;">${e.title}</span>
-                <strong style="color:var(--danger); font-size:0.9rem;">R$ ${formatCurrency(e.amount)}</strong>
+                <span style="font-size:0.85rem;">${escapeHtml(e.title)}</span>
+                <strong style="color:var(--danger); font-size:0.9rem;">R$ ${formatCurrency(Number(e.amount) || 0)}</strong>
             </div>`).join('');
     }
 
@@ -3102,240 +3490,4 @@
     } else {
         const canvas = document.getElementById('expenseChart');
         if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        myPieChart = new Chart(ctx, { type: 'doughnut', data: { labels: ['Comum', 'Inesperado', 'Crédito'], datasets: [{ data: dataValues, backgroundColor: ['#10b981', '#ef4444', '#f59e0b'], borderWidth: 2, borderColor: 'transparent' }] }, options: { responsive: true, maintainAspectRatio: false, animation: { duration: 450, easing: 'easeOutQuart' }, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12 } } }, cutout: '75%' } });
-    }
-    updateChartStyles();
-}
-
-
-
-    function renderMainLineChart() {
-    const initialBudget = parseFloat(budgetInput.value) || 0;
-    const { byDate } = getAnalytics();
-    const dates = [];
-    for (let i = 29; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); dates.push(d.toISOString().split('T')[0]); }
-    let balanceBefore = initialBudget;
-    expenses.forEach(exp => { if (exp.isoDate && exp.isoDate < dates[0]) balanceBefore += (exp.isIncome ? Number(exp.amount) || 0 : -(Number(exp.amount) || 0)); });
-    const labels = dates.map(dt => { const p = dt.split('-'); return `${p[2]}/${p[1]}`; });
-    const dataValues = [];
-    let runningBalance = balanceBefore;
-    dates.forEach(currentDate => { runningBalance += byDate.get(currentDate) || 0; dataValues.push(runningBalance); });
-    const canvas = document.getElementById('mainLineChart');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (mainLineChart) { mainLineChart.data.labels = labels; mainLineChart.data.datasets[0].data = dataValues; mainLineChart.update('none'); }
-    else { mainLineChart = new Chart(ctx, { type: 'line', data: { labels, datasets: [{ label: 'Evolução da Banca (R$)', data: dataValues, borderColor: '#2563eb', backgroundColor: 'rgba(37, 99, 235, 0.12)', borderWidth: 3, tension: 0.35, fill: true, pointBackgroundColor: '#1d4ed8', pointBorderColor: '#ffffff', pointRadius: 3, pointHoverRadius: 5 }] }, options: { responsive: true, maintainAspectRatio: false, animation: { duration: 450, easing: 'easeOutQuart' }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) { return ` R$ ${formatCurrency(context.parsed.y)}`; } } } }, scales: { x: { grid: { color: 'var(--border-color)' } }, y: { grid: { color: 'var(--border-color)' } } } } }); }
-    updateChartStyles();
-}
-
-    function renderLineChart() {
-    const targetMonthIso = `${selectedYear}-${String(selectedMonthIndex + 1).padStart(2, '0')}`;
-    const initialBudget = parseFloat(budgetInput.value) || 0;
-    const { byDate } = getAnalytics();
-    const daysInMonth = new Date(selectedYear, selectedMonthIndex + 1, 0).getDate();
-    let cumulativeBalance = initialBudget;
-    expenses.forEach(exp => { if (exp.isoDate && exp.isoDate.substring(0, 7) < targetMonthIso) cumulativeBalance += (exp.isIncome ? Number(exp.amount) || 0 : -(Number(exp.amount) || 0)); });
-    const labels = Array.from({ length: daysInMonth }, (_, i) => `${i + 1}`);
-    const dataValues = [];
-    for (let day = 1; day <= daysInMonth; day++) { const currentIsoDate = `${targetMonthIso}-${String(day).padStart(2, '0')}`; cumulativeBalance += byDate.get(currentIsoDate) || 0; dataValues.push(cumulativeBalance); }
-    const canvas = document.getElementById('lineChart');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (myLineChart) { myLineChart.data.labels = labels; myLineChart.data.datasets[0].data = dataValues; myLineChart.update('none'); }
-    else { myLineChart = new Chart(ctx, { type: 'line', data: { labels, datasets: [{ label: 'Saldo Disponível Acumulado (R$)', data: dataValues, borderColor: '#2563eb', backgroundColor: 'rgba(37, 99, 235, 0.12)', borderWidth: 3, tension: 0.35, fill: true, pointBackgroundColor: '#1d4ed8', pointBorderColor: '#ffffff', pointRadius: 4, pointHoverRadius: 6 }] }, options: { responsive: true, maintainAspectRatio: false, animation: { duration: 450, easing: 'easeOutQuart' }, plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { weight: 600 } } }, tooltip: { callbacks: { label: function(context) { return ` R$ ${formatCurrency(context.parsed.y)}`; } } } }, scales: { x: { title: { display: true, text: 'Dias do Mês Selecionado', font: { weight: 600 } }, grid: { color: 'var(--border-color)' } }, y: { title: { display: true, text: 'Valor Acumulado (R$)', font: { weight: 600 } }, grid: { color: 'var(--border-color)' } } } } }); }
-    updateChartStyles();
-}
-
-    async function addSavingGoal(e) {
-        e.preventDefault();
-        const titleInput = document.getElementById('sav-title');
-        const targetInput = document.getElementById('sav-target');
-
-        const goal = {
-            id: Date.now(),
-            title: titleInput.value.trim(),
-            target: parseFloat(targetInput.value),
-            current: 0
-        };
-
-        savings.push(goal);
-        await saveToLocalStorage();
-        document.getElementById('saving-form').reset();
-        renderSavings();
-    }
-
-    function deleteSavingGoal(id) {
-        if(confirm("Deseja realmente excluir esta meta de economia? O dinheiro já transferido para ela continuará registrado como saída no seu histórico principal.")) {
-            savings = savings.filter(s => s.id !== id);
-            saveToLocalStorage();
-            renderSavings();
-        }
-    }
-
-    function addFundsToGoal(id) {
-        const amountStr = prompt("Quanto você deseja guardar agora para esta meta? (Use ponto ou vírgula para centavos)");
-        if (!amountStr) return;
-        
-        const amount = parseFloat(amountStr.replace(',', '.'));
-        
-        if (isNaN(amount) || amount <= 0) {
-            alert("Por favor, insira um valor válido maior que zero.");
-            return;
-        }
-
-        const goalIndex = savings.findIndex(s => s.id === id);
-        if (goalIndex > -1) {
-            const goal = savings[goalIndex];
-            
-            if (goal.current + amount > goal.target) {
-                alert(`O valor máximo que falta para atingir a meta é R$ ${formatCurrency(goal.target - goal.current)}.`);
-                return;
-            }
-
-            goal.current += amount;
-            
-            const expense = {
-                id: Date.now(),
-                title: `[Economia] Guardado: ${goal.title}`,
-                description: "Valor reservado automaticamente para meta.",
-                amount: amount,
-                category: "Comum",
-                date: new Date().toISOString().split('T')[0].split('-').reverse().join('/'),
-                isoDate: new Date().toISOString().split('T')[0], 
-                isIncome: false
-            };
-            
-            expenses.unshift(expense); 
-            
-            saveToLocalStorage();
-            render(); 
-        }
-    }
-
-    function removeFundsFromGoal(id) {
-        const goalIndex = savings.findIndex(s => s.id === id);
-        if (goalIndex === -1) return;
-        
-        const goal = savings[goalIndex];
-
-        if (goal.current <= 0) {
-            alert("Não há saldo para retirar nesta meta.");
-            return;
-        }
-
-        const wantsToWithdraw = confirm("Você realmente precisa retirar esse dinheiro? Seu sonho se distância cada vez mais :(");
-        if (!wantsToWithdraw) return;
-
-        const amountStr = prompt(`Quanto deseja retirar? (Máximo disponível: R$ ${formatCurrency(goal.current)})`);
-        if (!amountStr) return;
-        
-        const amount = parseFloat(amountStr.replace(',', '.'));
-        
-        if (isNaN(amount) || amount <= 0) {
-            alert("Por favor, insira um valor válido maior que zero.");
-            return;
-        }
-
-        if (amount > goal.current) {
-            alert(`Saldo insuficiente na meta. O valor máximo para retirada é R$ ${formatCurrency(goal.current)}.`);
-            return;
-        }
-
-        goal.current -= amount;
-        
-        const income = {
-            id: Date.now(),
-            title: `[Economia] Resgate: ${goal.title}`,
-            description: "Valor resgatado da meta e devolvido ao caixa livre.",
-            amount: amount,
-            category: "Ganho", 
-            date: new Date().toISOString().split('T')[0].split('-').reverse().join('/'),
-            isoDate: new Date().toISOString().split('T')[0], 
-            isIncome: true
-        };
-        
-        expenses.unshift(income); 
-        
-        saveToLocalStorage();
-        render(); 
-    }
-
-    function renderSavings() {
-        const list = document.getElementById('savings-list');
-        list.innerHTML = '';
-
-        if (savings.length === 0) {
-            list.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 1.5rem 0;">Nenhuma meta de economia criada.</p>';
-            return;
-        }
-
-        const fragment = document.createDocumentFragment();
-
-        savings.forEach(goal => {
-            const pct = Math.min((goal.current / goal.target) * 100, 100);
-            const isCompleted = pct >= 100;
-            
-            const card = document.createElement('div');
-            card.className = 'saving-card';
-            card.style.borderLeft = isCompleted ? '4px solid var(--success)' : '4px solid var(--primary)';
-            
-            card.innerHTML = `
-                <div class="saving-header">
-                    <span class="saving-title">${goal.title}</span>
-                    <button class="btn-delete" style="margin-top: 0; padding: 0.2rem;" title="Deletar Meta" onclick="deleteSavingGoal(${goal.id})">
-                        <svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                    </button>
-                </div>
-                
-                <div>
-                    <div class="saving-amounts">
-                        <span style="color: var(--text-main);">R$ ${formatCurrency(goal.current)} guardados</span>
-                        <span style="color: var(--text-muted);">Alvo: R$ ${formatCurrency(goal.target)}</span>
-                    </div>
-                    <div class="progress-container" style="height: 12px;">
-                        <div class="progress-bar" style="width: ${pct}%; background-color: ${isCompleted ? 'var(--success)' : 'var(--primary)'}"></div>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-top: 0.4rem;">
-                        <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">${pct.toFixed(1)}%</span>
-                        ${isCompleted ? '<span style="font-size: 0.75rem; color: var(--success); font-weight: 700;">Parabéns! Meta Atingida! 🎉</span>' : ''}
-                    </div>
-                </div>
-                
-                <div style="display: flex; gap: 0.5rem; margin-top: auto;">
-                    <button class="btn ${isCompleted ? 'btn-success' : 'btn-primary'}" 
-                            style="flex: 1; padding: 0.6rem; font-size: 0.85rem;" 
-                            ${isCompleted ? 'disabled style="opacity: 0.6; cursor: not-allowed;"' : ''}
-                            onclick="addFundsToGoal(${goal.id})">
-                        ${isCompleted ? 'Concluída' : 'Guardar'}
-                    </button>
-                    <button class="btn" 
-                            style="flex: 1; padding: 0.6rem; font-size: 0.85rem; background-color: transparent; border: 1px solid var(--border-color); color: var(--text-main);" 
-                            ${goal.current === 0 ? 'disabled style="opacity: 0.4; cursor: not-allowed;"' : ''}
-                            onclick="removeFundsFromGoal(${goal.id})">
-                        Retirar
-                    </button>
-                </div>
-            `;
-            fragment.appendChild(card);
-        });
-
-        list.appendChild(fragment);
-    }
-
-    function render() {
-        renderExpenses();
-        updateSummary();
-        renderSavings();
-        renderWishes();
-        renderMonthComparison();
-        renderTopExpenses();
-    }
-
-    render();
-    
-    // Timer para atualizar os relógios da quarentena a cada minuto
-    setInterval(renderWishes, 60000);
-</script>
-</body>
-</html>
+        const ctx = ca
