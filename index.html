@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <style>
-        /* VARIÃVEIS DE CORES */
+        /* VARIÁVEIS DE CORES */
         :root {
             --bg-page: #f8fafc;
             --bg-card: #ffffff;
@@ -189,7 +189,7 @@
             transform: translate3d(0, 0, 0);
         }
 
-        /* --- CONTEÃšDO PRINCIPAL --- */
+        /* --- CONTEÚDO PRINCIPAL --- */
         .main-content {
             flex: 1;
             margin-left: 76px;
@@ -204,7 +204,7 @@
             max-width: calc(100vw - 260px);
         }
 
-        /* AlternÃ¢ncia de Telas (SPA) */
+        /* Alternância de Telas (SPA) */
         .spa-view {
             display: none;
             animation: fadeIn 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -406,16 +406,16 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 2rem;
-            align-items: flex-start; /* Impede que o quadro da esquerda cresÃ§a com a direita */
+            align-items: flex-start; /* Impede que o quadro da esquerda cresça com a direita */
         }
 
         @media (min-width: 1024px) {
             .quarantine-grid {
-                grid-template-columns: minmax(450px, 1fr) minmax(450px, 1fr); /* Garante que ambos sejam amplos e idÃªnticos */
+                grid-template-columns: minmax(450px, 1fr) minmax(450px, 1fr); /* Garante que ambos sejam amplos e idênticos */
             }
         }
 
-        /* Slider NÃ£o Sou RobÃ´ */
+        /* Slider Não Sou Robô */
         .captcha-container {
             margin-top: 1.5rem;
             margin-bottom: 1.5rem;
@@ -596,7 +596,7 @@
             gap: 1rem;
         }
 
-        /* BOTÃƒO DE TEMA */
+        /* BOTÃO DE TEMA */
         .theme-toggle-btn {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -669,7 +669,7 @@
             justify-content: space-between;
         }
 
-        /* FormulÃ¡rios */
+        /* Formulários */
         .form-group {
             margin-bottom: 1.2rem;
         }
@@ -699,7 +699,7 @@
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
-        /* === Inputs de Data â€” tema unificado === */
+        /* === Inputs de Data — tema unificado === */
         input[type="date"].form-control {
             position: relative;
             font-family: 'Inter', sans-serif;
@@ -714,7 +714,7 @@
             color-scheme: dark;
         }
 
-        /* Ãcone de calendÃ¡rio customizado */
+        /* Ícone de calendário customizado */
         input[type="date"].form-control::-webkit-calendar-picker-indicator {
             position: absolute;
             right: 0.7rem;
@@ -768,7 +768,7 @@
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
         }
 
-        /* Firefox: deixa o input com aparÃªncia nativa mas alinhada */
+        /* Firefox: deixa o input com aparência nativa mas alinhada */
         @-moz-document url-prefix() {
             input[type="date"].form-control {
                 padding-right: 0.7rem;
@@ -899,7 +899,7 @@
             will-change: width;
         }
 
-        /* Lista HistÃ³rico */
+        /* Lista Histórico */
         .expense-list {
             max-height: 550px;
             overflow-y: auto;
@@ -956,7 +956,7 @@
             margin-top: 6px;
         }
 
-        /* GrÃ¡ficos */
+        /* Gráficos */
         .chart-container {
             position: relative;
             margin: auto;
@@ -978,7 +978,7 @@
             width: 100%;
         }
 
-        /* Grid de LanÃ§amento */
+        /* Grid de Lançamento */
         .forms-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -992,7 +992,7 @@
             }
         }
 
-        /* Seletor do GrÃ¡fico */
+        /* Seletor do Gráfico */
         .chart-filters {
             display: flex;
             gap: 1rem;
@@ -1011,7 +1011,7 @@
             min-width: 160px;
         }
 
-        /* --- ESTILIZAÃ‡ÃƒO DO SELETOR DE MÃŠS CUSTOMIZADO --- */
+        /* --- ESTILIZAÇÃO DO SELETOR DE MÊS CUSTOMIZADO --- */
         .custom-month-picker {
             position: relative;
             display: inline-block;
@@ -1209,7 +1209,7 @@
             font-weight: 500;
         }
 
-        /* ============ FLATPICKR â€” TEMA CUSTOMIZADO ============ */
+        /* ============ FLATPICKR — TEMA CUSTOMIZADO ============ */
         .flatpickr-input.form-control + .form-control {
             /* o altInput herda o estilo do form-control automaticamente */
         }
@@ -1263,7 +1263,7 @@
             align-items: center !important;
             justify-content: center !important;
             width: 100% !important;
-            padding: 0 50px !important; /* Aumentado para garantir espaÃ§o extra entre botÃµes e texto */
+            padding: 0 50px !important; /* Aumentado para garantir espaço extra entre botões e texto */
         }
         .flatpickr-current-month {
             position: relative !important;
@@ -1314,7 +1314,7 @@
         .numInputWrapper span.arrowUp:after { border-bottom-color: var(--primary) !important; }
         .numInputWrapper span.arrowDown:after { border-top-color: var(--primary) !important; }
 
-        /* BotÃµes prev/next harmonizados (pills circulares) */
+        /* Botões prev/next harmonizados (pills circulares) */
         .flatpickr-months .flatpickr-prev-month,
         .flatpickr-months .flatpickr-next-month {
             position: absolute !important;
@@ -2293,13 +2293,13 @@
                 </div>
                 <div class="form-group" style="text-align: left;">
                     <label for="login-password">Senha</label>
-                    <input type="password" id="login-password" class="form-control" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" required>
+                    <input type="password" id="login-password" class="form-control" placeholder="••••••••" required>
                 </div>
                 
                 <div class="captcha-container">
-                    <label class="captcha-label">VerificaÃ§Ã£o de SeguranÃ§a</label>
+                    <label class="captcha-label">Verificação de Segurança</label>
                     <div id="captcha-slider" class="slider-captcha">
-                        <span class="slider-text">Arraste para a direita â†’</span>
+                        <span class="slider-text">Arraste para a direita →</span>
                         <div id="slider-handle" class="slider-handle">
                             <svg style="width:20px;height:20px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -2314,7 +2314,7 @@
             </form>
             
             <div style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-muted);">
-                Ainda nÃ£o tem conta? <a href="javascript:void(0)" onclick="toggleAuthScreens('signup')" style="color: var(--primary); font-weight: 600; text-decoration: none;">Cadastre-se</a>
+                Ainda não tem conta? <a href="javascript:void(0)" onclick="toggleAuthScreens('signup')" style="color: var(--primary); font-weight: 600; text-decoration: none;">Cadastre-se</a>
             </div>
         </div>
     </div>
@@ -2329,10 +2329,10 @@
                 </svg>
             </div>
             <h1>Crie sua conta</h1>
-            <p>Comece a controlar suas finanÃ§as hoje</p>
+            <p>Comece a controlar suas finanças hoje</p>
             
-            <div id="signup-error-msg" class="login-error">E-mail jÃ¡ cadastrado ou dados invÃ¡lidos.</div>
-            <div id="signup-success-msg" class="login-error" style="background-color: rgba(16, 185, 129, 0.1); color: var(--success); border-color: transparent;">Conta criada com sucesso! FaÃ§a login.</div>
+            <div id="signup-error-msg" class="login-error">E-mail já cadastrado ou dados inválidos.</div>
+            <div id="signup-success-msg" class="login-error" style="background-color: rgba(16, 185, 129, 0.1); color: var(--success); border-color: transparent;">Conta criada com sucesso! Faça login.</div>
             
             <form id="signup-form" onsubmit="handleSignup(event)">
                 <div class="form-group" style="text-align: left;">
@@ -2345,7 +2345,7 @@
                 </div>
                 <div class="form-group" style="text-align: left;">
                     <label for="signup-password">Senha</label>
-                    <input type="password" id="signup-password" class="form-control" placeholder="MÃ­nimo 6 caracteres" minlength="6" required>
+                    <input type="password" id="signup-password" class="form-control" placeholder="Mínimo 6 caracteres" minlength="6" required>
                 </div>
                 
                 <button type="submit" class="btn btn-primary">
@@ -2354,7 +2354,7 @@
             </form>
             
             <div style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-muted);">
-                JÃ¡ tem uma conta? <a href="javascript:void(0)" onclick="toggleAuthScreens('login')" style="color: var(--primary); font-weight: 600; text-decoration: none;">FaÃ§a Login</a>
+                Já tem uma conta? <a href="javascript:void(0)" onclick="toggleAuthScreens('login')" style="color: var(--primary); font-weight: 600; text-decoration: none;">Faça Login</a>
             </div>
         </div>
     </div>
@@ -2383,11 +2383,11 @@
             </a></li>
             <li><a onclick="switchView('view-evolucao')">
                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
-                <span class="nav-text">GrÃ¡fico Mensal</span>
+                <span class="nav-text">Gráfico Mensal</span>
             </a></li>
             <li><a onclick="switchView('view-historico')">
                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
-                <span class="nav-text">HistÃ³rico</span>
+                <span class="nav-text">Histórico</span>
             </a></li>
             <li><a onclick="switchView('view-economias')">
                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
@@ -2450,10 +2450,10 @@
                         
                         <!-- NOVO: Painel Inteligente de Queima de Caixa -->
                         <div id="smart-burn-alert" class="smart-alert-card safe">
-                            <div class="alert-icon">âœ…</div>
+                            <div class="alert-icon">✅</div>
                             <div class="alert-content">
-                                <h4 id="burn-title">Carregando AnÃ¡lise...</h4>
-                                <p id="burn-desc">Avaliando seu histÃ³rico de caixa...</p>
+                                <h4 id="burn-title">Carregando Análise...</h4>
+                                <p id="burn-desc">Avaliando seu histórico de caixa...</p>
                             </div>
                         </div>
 
@@ -2463,7 +2463,7 @@
                                 <p id="total-spent" style="color: var(--danger);">R$ 0,00</p>
                             </div>
                             <div class="summary-card">
-                                <span>Saldo DisponÃ­vel</span>
+                                <span>Saldo Disponível</span>
                                 <p id="total-remaining" style="color: var(--success);">R$ 0,00</p>
                             </div>
                         </div>
@@ -2479,7 +2479,7 @@
                     </section>
 
                     <div class="card" style="text-align: center;">
-                        <h2>DistribuiÃ§Ã£o por Categoria</h2>
+                        <h2>Distribuição por Categoria</h2>
                         <div class="chart-container">
                             <canvas id="expenseChart"></canvas>
                         </div>
@@ -2491,7 +2491,7 @@
                     </div>
 
                     <div class="card">
-                        <h2>Top 5 Gastos do MÃªs</h2>
+                        <h2>Top 5 Gastos do Mês</h2>
                         <div id="top-expenses" style="display:flex; flex-direction:column; gap:0.5rem;"></div>
                     </div>
                 </div>
@@ -2499,16 +2499,16 @@
                 <div id="forms-column" style="display: flex; flex-direction: column; gap: 2rem;">
                     <div class="forms-grid">
                         <section class="card" style="border-left: 4px solid var(--success);">
-                            <h2>Adicionar Entrada/Ganho DiÃ¡rio</h2>
+                            <h2>Adicionar Entrada/Ganho Diário</h2>
                             <form id="income-form" onsubmit="addIncome(event)">
                                 <div class="form-group">
                                     <label for="inc-title">Origem do Ganho *</label>
-                                    <input type="text" id="inc-title" class="form-control" placeholder="Ex: DiÃ¡ria de Motoboy" required>
+                                    <input type="text" id="inc-title" class="form-control" placeholder="Ex: Diária de Motoboy" required>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="inc-desc">DescriÃ§Ã£o (Opcional)</label>
-                                    <input type="text" id="inc-desc" class="form-control" placeholder="Ex: Roda de entregas perÃ­odo da noite">
+                                    <label for="inc-desc">Descrição (Opcional)</label>
+                                    <input type="text" id="inc-desc" class="form-control" placeholder="Ex: Roda de entregas período da noite">
                                 </div>
 
                                 <div class="form-group">
@@ -2533,17 +2533,17 @@
                             <h2>Adicionar Novo Gasto</h2>
                             <form id="expense-form" onsubmit="addExpense(event)">
                                 <div class="form-group">
-                                    <label for="title">TÃ­tulo da Despesa *</label>
-                                    <input type="text" id="title" class="form-control" placeholder="Ex: CombustÃ­vel da Moto" required>
+                                    <label for="title">Título da Despesa *</label>
+                                    <input type="text" id="title" class="form-control" placeholder="Ex: Combustível da Moto" required>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="description">DescriÃ§Ã£o (Opcional)</label>
-                                    <input type="text" id="description" class="form-control" placeholder="Ex: Troca de Ã³leo da moto">
+                                    <label for="description">Descrição (Opcional)</label>
+                                    <input type="text" id="description" class="form-control" placeholder="Ex: Troca de óleo da moto">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="date">Data da TransaÃ§Ã£o *</label>
+                                    <label for="date">Data da Transação *</label>
                                     <input type="date" id="date" class="form-control" required>
                                 </div>
 
@@ -2558,7 +2558,7 @@
                                         <select id="category" class="form-control" required>
                                             <option value="Comum">Gasto Comum</option>
                                             <option value="Inesperado">Gasto Inesperado</option>
-                                            <option value="CrÃ©dito">Compra no CrÃ©dito</option>
+                                            <option value="Crédito">Compra no Crédito</option>
                                         </select>
                                     </div>
                                 </div>
@@ -2569,8 +2569,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="installments">Parcelar em (nÂº de meses)</label>
-                                    <input type="number" id="installments" class="form-control" min="1" max="36" value="1" title="Use 1 para gasto Ã  vista. Acima disso cria parcelas mensais.">
+                                    <label for="installments">Parcelar em (nº de meses)</label>
+                                    <input type="number" id="installments" class="form-control" min="1" max="36" value="1" title="Use 1 para gasto à vista. Acima disso cria parcelas mensais.">
                                 </div>
 
                                 <button type="submit" class="btn btn-danger">Registrar Despesa</button>
@@ -2579,8 +2579,8 @@
                     </div>
 
                     <div class="card">
-                        <h2>TendÃªncia dos Ãšltimos 30 dias</h2>
-                        <span style="font-size: 0.85rem; color: var(--text-muted);">MovimentaÃ§Ã£o real da sua banca nos Ãºltimos 30 dias</span>
+                        <h2>Tendência dos Últimos 30 dias</h2>
+                        <span style="font-size: 0.85rem; color: var(--text-muted);">Movimentação real da sua banca nos últimos 30 dias</span>
                         <div class="main-line-chart-container">
                             <canvas id="mainLineChart"></canvas>
                         </div>
@@ -2592,19 +2592,19 @@
         <div id="view-historico" class="spa-view">
             <section class="card">
                 <h2>
-                    HistÃ³rico Completo de LanÃ§amentos
+                    Histórico Completo de Lançamentos
                     <select id="filter-category" onchange="renderExpenses()" style="font-size: 0.85rem; padding: 0.3rem 0.6rem; border-radius: 6px; border: 1px solid var(--border-color); background-color: var(--bg-page); color: var(--text-main);">
-                        <option value="Todos">Todas MovimentaÃ§Ãµes</option>
+                        <option value="Todos">Todas Movimentações</option>
                         <option value="Comum">Gasto Comum</option>
                         <option value="Inesperado">Gasto Inesperado</option>
-                        <option value="CrÃ©dito">Gasto no CrÃ©dito</option>
+                        <option value="Crédito">Gasto no Crédito</option>
                         <option value="Ganho">Entradas (Ganhos)</option>
                     </select>
                 </h2>
                 <div style="display:grid; grid-template-columns: 2fr 1fr 1fr auto; gap:0.75rem; margin-bottom:1rem;">
-                    <input type="text" id="filter-search" class="form-control" placeholder="Buscar por tÃ­tulo ou descriÃ§Ã£o..." oninput="debouncedRenderExpenses()">
+                    <input type="text" id="filter-search" class="form-control" placeholder="Buscar por título ou descrição..." oninput="debouncedRenderExpenses()">
                     <input type="date" id="filter-from" class="form-control" onchange="renderExpenses()" title="De">
-                    <input type="date" id="filter-to" class="form-control" onchange="renderExpenses()" title="AtÃ©">
+                    <input type="date" id="filter-to" class="form-control" onchange="renderExpenses()" title="Até">
                     <button type="button" class="btn btn-primary" style="width:auto; padding:0.7rem 1rem;" onclick="clearFilters()">Limpar</button>
                 </div>
                 <div id="filter-summary" style="font-size:0.85rem; color: var(--text-muted); margin-bottom:0.75rem;"></div>
@@ -2614,12 +2614,12 @@
 
         <div id="view-evolucao" class="spa-view">
             <section class="card">
-                <h2>AnÃ¡lise de EvoluÃ§Ã£o Mensal</h2>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Acompanhe o saldo acumulado e a flutuaÃ§Ã£o do seu patrimÃ´nio dia a dia.</p>
+                <h2>Análise de Evolução Mensal</h2>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Acompanhe o saldo acumulado e a flutuação do seu patrimônio dia a dia.</p>
                 
                 <div class="chart-filters">
                     <div class="form-group">
-                        <label>Escolha o MÃªs / PerÃ­odo:</label>
+                        <label>Escolha o Mês / Período:</label>
                         <div class="custom-month-picker">
                             <button type="button" class="picker-trigger" onclick="toggleMonthPicker()">
                                 <span id="selected-period-display">maio de 2026</span>
@@ -2627,9 +2627,9 @@
                             </button>
                             <div id="month-picker-dropdown" class="picker-dropdown">
                                 <div class="picker-header">
-                                    <button type="button" class="year-btn" onclick="changePickerYear(-1)">â€¹</button>
+                                    <button type="button" class="year-btn" onclick="changePickerYear(-1)">‹</button>
                                     <span id="picker-year-display">2026</span>
-                                    <button type="button" class="year-btn" onclick="changePickerYear(1)">â€º</button>
+                                    <button type="button" class="year-btn" onclick="changePickerYear(1)">›</button>
                                 </div>
                                 <div class="months-grid">
                                     <div class="month-item" onclick="selectPickerMonth(0)">jan</div>
@@ -2646,14 +2646,14 @@
                                     <div class="month-item" onclick="selectPickerMonth(11)">dez</div>
                                 </div>
                                 <div class="picker-footer">
-                                    <button type="button" onclick="resetToCurrentMonth()">Este mÃªs</button>
+                                    <button type="button" onclick="resetToCurrentMonth()">Este mês</button>
                                     <button type="button" onclick="toggleMonthPicker()">Fechar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div style="flex: 1; min-width: 160px; display: flex; align-items: flex-end;">
-                        <span style="font-size: 0.85rem; color: var(--text-muted);">A linha mostra a subida e descida exata dos seus fundos com base no saldo inicial e nas movimentaÃ§Ãµes.</span>
+                        <span style="font-size: 0.85rem; color: var(--text-muted);">A linha mostra a subida e descida exata dos seus fundos com base no saldo inicial e nas movimentações.</span>
                     </div>
                 </div>
 
@@ -2670,21 +2670,21 @@
                     <section class="card" style="border-left: 4px solid var(--warning); min-height: 550px; display: flex; flex-direction: column;">
                         <h2>Adicionar Desejo (Quarentena)</h2>
                         <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
-                            Itens adicionados aqui ficarÃ£o bloqueados por 48 horas para evitar compras por impulso. 
-                            O tempo esfria o impulso e ajuda vocÃª a decidir se realmente precisa do item.
+                            Itens adicionados aqui ficarão bloqueados por 48 horas para evitar compras por impulso. 
+                            O tempo esfria o impulso e ajuda você a decidir se realmente precisa do item.
                         </p>
                         <form id="wish-form" onsubmit="addWish(event)">
                             <div class="form-group">
-                                <label for="wish-title">O que vocÃª deseja comprar? *</label>
+                                <label for="wish-title">O que você deseja comprar? *</label>
                                 <input type="text" id="wish-title" class="form-control" placeholder="Ex: Monitor Gamer 144hz" required>
                             </div>
                             <div class="form-group">
                                 <label for="wish-category">Categoria *</label>
                                 <select id="wish-category" class="form-control" required>
                                     <option value="Tecnologia">Tecnologia</option>
-                                    <option value="PerifÃ©ricos">PerifÃ©ricos</option>
+                                    <option value="Periféricos">Periféricos</option>
                                     <option value="Upgrades Carro/Moto">Upgrades Carro/Moto</option>
-                                    <option value="VestuÃ¡rio">VestuÃ¡rio</option>
+                                    <option value="Vestuário">Vestuário</option>
                                     <option value="Lazer">Lazer</option>
                                     <option value="Outros">Outros</option>
                                 </select>
@@ -2700,9 +2700,9 @@
                     </section>
 
                     <section class="card" style="display: flex; flex-direction: column; min-height: 550px;">
-                        <h2>Itens em ObservaÃ§Ã£o (48h)</h2>
+                        <h2>Itens em Observação (48h)</h2>
                         <div id="wish-list" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem; flex: 1;">
-                            <!-- Itens de desejo serÃ£o inseridos aqui -->
+                            <!-- Itens de desejo serão inseridos aqui -->
                         </div>
                     </section>
                 </div>
@@ -2719,7 +2719,7 @@
                         <form id="saving-form" onsubmit="addSavingGoal(event)">
                             <div class="forms-grid" style="margin-top: 0;">
                                 <div class="form-group">
-                                    <label for="sav-title">Qual Ã© o seu objetivo? *</label>
+                                    <label for="sav-title">Qual é o seu objetivo? *</label>
                                     <input type="text" id="sav-title" class="form-control" placeholder="Ex: Comprar Notebook" required>
                                 </div>
                                 <div class="form-group">
@@ -2746,7 +2746,7 @@
     let savings = JSON.parse(localStorage.getItem('savings_rp')) || [];
     let wishes = [];
     
-    // --- LÃ“GICA DE AVALIAÃ‡ÃƒO PREGUIÃ‡OSA (LAZY EVALUATION) PARA ASSINATURAS ---
+    // --- LÓGICA DE AVALIAÇÃO PREGUIÇOSA (LAZY EVALUATION) PARA ASSINATURAS ---
     function processRecurringExpenses() {
         const today = new Date();
         const todayIso = today.toISOString().split('T')[0];
@@ -2821,7 +2821,7 @@
 
     let selectedYear = 2026;
     let selectedMonthIndex = 4;
-    const monthNames = ["janeiro", "fevereiro", "marÃ§o", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+    const monthNames = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
 
     const expenseForm = document.getElementById('expense-form');
     const incomeForm = document.getElementById('income-form');
@@ -2864,7 +2864,7 @@
     let currentTheme = localStorage.getItem('theme_rp') || 'light';
     document.documentElement.setAttribute('data-theme', currentTheme);
 
-    // --- LÃ“GICA DE BANCO DE DADOS E AUTENTICAÃ‡ÃƒO ---
+    // --- LÓGICA DE BANCO DE DADOS E AUTENTICAÇÃO ---
     const SUPABASE_URL = 'https://dlqxtqnrnrztqazxirdo.supabase.co';
     const APP_URL = 'https://sdwrafa.github.io/controlador-de-gastos/';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRscXh0cW5ybnJ6dHFhenhpcmRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Mzc5NDgsImV4cCI6MjA5NjAxMzk0OH0.-rim3b8-uIjXXjvdb-V6aKQ4m5IXhMT8KV9M6L4I2LA';
@@ -2886,7 +2886,7 @@
         }
     }
 
-    // --- LÃ“GICA DE CAPTCHA ---
+    // --- LÓGICA DE CAPTCHA ---
     let isCaptchaSolved = false;
     const slider = document.getElementById('captcha-slider');
     const handle = document.getElementById('slider-handle');
@@ -3036,7 +3036,7 @@
 
     async function initAuth() {
         const { data, error } = await supabaseClient.auth.getSession();
-        if (error) console.warn('Falha ao restaurar sessÃ£o:', error.message);
+        if (error) console.warn('Falha ao restaurar sessão:', error.message);
 
         if (data.session?.user) {
             currentUser = data.session.user;
@@ -3145,7 +3145,7 @@
         isDragging = false;
         releaseCaptchaPointer();
         slider.classList.remove('success');
-        document.querySelector('.slider-text').innerText = 'Arraste para a direita â†’';
+        document.querySelector('.slider-text').innerText = 'Arraste para a direita →';
         handle.style.left = '5px';
         loginBtn.disabled = true;
         loginBtn.style.opacity = '0.6';
@@ -3544,7 +3544,7 @@
             expenses.unshift({
                 id: baseId + i,
                 title: title + titleSuffix,
-                description: descInput.value.trim() || 'Sem descriÃ§Ã£o',
+                description: descInput.value.trim() || 'Sem descrição',
                 description,
                 amount: perInstallment,
                 category: catInput.value,
@@ -3571,16 +3571,16 @@
     function editExpense(id) {
         const exp = expenses.find(e => e.id === id);
         if (!exp) return;
-        const newTitle = prompt("Novo tÃ­tulo:", exp.title);
+        const newTitle = prompt("Novo título:", exp.title);
         if (newTitle === null) return;
         const newAmountStr = prompt("Novo valor (R$):", exp.amount);
         if (newAmountStr === null) return;
         const newAmount = parseFloat(String(newAmountStr).replace(',', '.'));
-        if (isNaN(newAmount) || newAmount <= 0) { alert("Valor invÃ¡lido."); return; }
-        const newDesc = prompt("Nova descriÃ§Ã£o:", exp.description) ?? exp.description;
+        if (isNaN(newAmount) || newAmount <= 0) { alert("Valor inválido."); return; }
+        const newDesc = prompt("Nova descrição:", exp.description) ?? exp.description;
         exp.title = newTitle.trim() || exp.title;
         exp.amount = newAmount;
-        exp.description = newDesc.trim() || "Sem descriÃ§Ã£o";
+        exp.description = newDesc.trim() || "Sem descrição";
         saveToLocalStorage();
         render();
     }
@@ -3613,7 +3613,7 @@
         const income = {
             id: createId(),
             title,
-            description: incDesc.value.trim() || 'Sem descriÃ§Ã£o',
+            description: incDesc.value.trim() || 'Sem descrição',
             amount,
             category: 'Ganho',
             date: formatISODateBR(incDate.value),
@@ -3651,7 +3651,7 @@
         }
     }
 
-    // --- LÃ“GICA DA QUARENTENA DE DESEJOS ---
+    // --- LÓGICA DA QUARENTENA DE DESEJOS ---
     async function addWish(e) {
         e.preventDefault();
         const form = e.target;
@@ -3698,7 +3698,7 @@
         const wish = wishes.find(w => w.id == id);
         if (!wish) return;
         
-        // Marcar o item como em ediÃ§Ã£o
+        // Marcar o item como em edição
         wish.isEditing = true;
         renderWishes();
     }
@@ -3747,8 +3747,8 @@
                     <svg style="width: 64px; height: 64px; margin-bottom: 1.5rem; opacity: 0.2;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                     </svg>
-                    <p style="font-size: 1.1rem; font-weight: 500;">Sua quarentena estÃ¡ vazia</p>
-                    <p style="font-size: 0.9rem; max-width: 250px; margin-top: 0.5rem;">Adicione itens que vocÃª deseja comprar para comeÃ§ar o perÃ­odo de reflexÃ£o.</p>
+                    <p style="font-size: 1.1rem; font-weight: 500;">Sua quarentena está vazia</p>
+                    <p style="font-size: 0.9rem; max-width: 250px; margin-top: 0.5rem;">Adicione itens que você deseja comprar para começar o período de reflexão.</p>
                 </div>
             `;
             return;
@@ -3775,14 +3775,14 @@
                 wishEl.innerHTML = `
                     <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
                         <div class="form-group" style="margin:0">
-                            <input type="text" class="form-control edit-title" value="${wish.title}" placeholder="TÃ­tulo">
+                            <input type="text" class="form-control edit-title" value="${wish.title}" placeholder="Título">
                         </div>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
                             <select class="form-control edit-category">
                                 <option value="Tecnologia" ${wish.category === 'Tecnologia' ? 'selected' : ''}>Tecnologia</option>
-                                <option value="PerifÃ©ricos" ${wish.category === 'PerifÃ©ricos' ? 'selected' : ''}>PerifÃ©ricos</option>
+                                <option value="Periféricos" ${wish.category === 'Periféricos' ? 'selected' : ''}>Periféricos</option>
                                 <option value="Upgrades Carro/Moto" ${wish.category === 'Upgrades Carro/Moto' ? 'selected' : ''}>Upgrades Carro/Moto</option>
-                                <option value="VestuÃ¡rio" ${wish.category === 'VestuÃ¡rio' ? 'selected' : ''}>VestuÃ¡rio</option>
+                                <option value="Vestuário" ${wish.category === 'Vestuário' ? 'selected' : ''}>Vestuário</option>
                                 <option value="Lazer" ${wish.category === 'Lazer' ? 'selected' : ''}>Lazer</option>
                                 <option value="Outros" ${wish.category === 'Outros' ? 'selected' : ''}>Outros</option>
                             </select>
@@ -3790,7 +3790,7 @@
                         </div>
                         <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
                             <button onclick="cancelInPlaceEdit(${wish.id})" class="btn-wish btn-wish-cancel">Cancelar</button>
-                            <button onclick="saveInPlaceEdit(${wish.id})" class="btn-wish btn-wish-commit">Salvar AlteraÃ§Ãµes</button>
+                            <button onclick="saveInPlaceEdit(${wish.id})" class="btn-wish btn-wish-commit">Salvar Alterações</button>
                         </div>
                     </div>
                 `;
@@ -3837,7 +3837,7 @@
         if (!wish) return;
 
         if (Date.now() < wish.unlockAt) {
-            alert("Este item ainda estÃ¡ em quarentena. Aguarde o tempo de reflexÃ£o!");
+            alert("Este item ainda está em quarentena. Aguarde o tempo de reflexão!");
             return;
         }
 
@@ -3849,7 +3849,7 @@
             date: new Date().toLocaleDateString('pt-BR'),
             isoDate: new Date().toISOString().split('T')[0],
             isIncome: false,
-            description: `Compra efetivada apÃ³s quarentena de 48h. Categoria original: ${wish.category}`
+            description: `Compra efetivada após quarentena de 48h. Categoria original: ${wish.category}`
         };
 
         expenses.unshift(newExpense);
@@ -3893,8 +3893,8 @@
         reader.onload = function(ev) {
             try {
                 const data = JSON.parse(ev.target.result);
-                if (!Array.isArray(data.expenses)) throw new Error("Formato invÃ¡lido");
-                if (!confirm("Isso substituirÃ¡ seus dados atuais. Continuar?")) return;
+                if (!Array.isArray(data.expenses)) throw new Error("Formato inválido");
+                if (!confirm("Isso substituirá seus dados atuais. Continuar?")) return;
                 expenses = data.expenses;
                 savings = Array.isArray(data.savings) ? data.savings : [];
                 if (data.budget) budgetInput.value = data.budget;
@@ -3902,7 +3902,7 @@
                 render();
                 alert("Backup importado com sucesso!");
             } catch (err) {
-                alert("Arquivo invÃ¡lido: " + err.message);
+                alert("Arquivo inválido: " + err.message);
             }
         };
         reader.readAsText(file);
@@ -3931,14 +3931,14 @@
         const prevSum = sumMonth(prev);
         const diff = curSum - prevSum;
         const pct = prevSum > 0 ? Math.round((diff/prevSum)*100) : (curSum>0 ? 100 : 0);
-        const arrow = diff > 0 ? 'â–²' : (diff < 0 ? 'â–¼' : 'â€“');
+        const arrow = diff > 0 ? '▲' : (diff < 0 ? '▼' : '–');
         const color = diff > 0 ? 'var(--danger)' : (diff < 0 ? 'var(--success)' : 'var(--text-muted)');
 
         box.innerHTML = `
-            <div style="display:flex; justify-content:space-between;"><span>MÃªs anterior:</span><strong>R$ ${formatCurrency(prevSum)}</strong></div>
-            <div style="display:flex; justify-content:space-between;"><span>MÃªs atual:</span><strong>R$ ${formatCurrency(curSum)}</strong></div>
+            <div style="display:flex; justify-content:space-between;"><span>Mês anterior:</span><strong>R$ ${formatCurrency(prevSum)}</strong></div>
+            <div style="display:flex; justify-content:space-between;"><span>Mês atual:</span><strong>R$ ${formatCurrency(curSum)}</strong></div>
             <div style="display:flex; justify-content:space-between; padding-top:0.5rem; border-top:1px solid var(--border-color);">
-                <span>VariaÃ§Ã£o:</span>
+                <span>Variação:</span>
                 <strong style="color:${color}">${arrow} R$ ${formatCurrency(Math.abs(diff))} (${pct>=0?'+':''}${pct}%)</strong>
             </div>`;
     }
@@ -3952,7 +3952,7 @@
             .sort((a,b)=>(Number(b.amount) || 0) - (Number(a.amount) || 0))
             .slice(0,5);
         if (top.length === 0) {
-            box.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">Nenhum gasto neste mÃªs ainda.</p>';
+            box.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">Nenhum gasto neste mês ainda.</p>';
             return;
         }
         box.innerHTML = top.map(e => `
@@ -3962,7 +3962,7 @@
             </div>`).join('');
     }
 
-    // --- MOTOR DE INTELIGÃŠNCIA ARTIFICIAL: ALERTA DE QUEIMA DE CAIXA ---
+    // --- MOTOR DE INTELIGÊNCIA ARTIFICIAL: ALERTA DE QUEIMA DE CAIXA ---
     function updateBurnRateAlert(currentBalance, totalSpent, maxLimit) {
     const today = new Date();
     const currentMonthStr = today.toISOString().substring(0, 7);
@@ -3981,22 +3981,22 @@
     if (!alertBox || !alertTitle || !alertDesc || !alertIcon) return;
     let state = 'safe';
     let title = 'Queima de Caixa Controlada';
-    let desc = `Sua projeÃ§Ã£o de gastos (R$ ${formatCurrency(projectedTotalSpend)}) e mÃ©dia diÃ¡ria (R$ ${formatCurrency(dailyBurnRate)}) estÃ£o confortÃ¡veis. Ã“timo trabalho!`;
-    let icon = 'âœ“';
+    let desc = `Sua projeção de gastos (R$ ${formatCurrency(projectedTotalSpend)}) e média diária (R$ ${formatCurrency(dailyBurnRate)}) estão confortáveis. Ótimo trabalho!`;
+    let icon = '✓';
     if (currentBalance < (dailyBurnRate * daysRemaining)) {
         state = 'danger';
-        title = 'Alerta MÃ¡ximo: Queima de Caixa!';
-        desc = `No seu ritmo atual (R$ ${formatCurrency(dailyBurnRate)}/dia), faltarÃ¡ dinheiro para os ${daysRemaining} dias restantes do mÃªs. Pise no freio agora!`;
+        title = 'Alerta Máximo: Queima de Caixa!';
+        desc = `No seu ritmo atual (R$ ${formatCurrency(dailyBurnRate)}/dia), faltará dinheiro para os ${daysRemaining} dias restantes do mês. Pise no freio agora!`;
         icon = '!';
     } else if (avgHistoricalSpend > 0 && projectedTotalSpend > (avgHistoricalSpend * 1.2)) {
         state = 'warning';
-        title = 'Desvio do PadrÃ£o HistÃ³rico';
-        desc = `Sua projeÃ§Ã£o indica gasto de R$ ${formatCurrency(projectedTotalSpend)} este mÃªs. Isso Ã© ${Math.round(((projectedTotalSpend / avgHistoricalSpend) - 1) * 100)}% acima da sua mÃ©dia. AtenÃ§Ã£o!`;
+        title = 'Desvio do Padrão Histórico';
+        desc = `Sua projeção indica gasto de R$ ${formatCurrency(projectedTotalSpend)} este mês. Isso é ${Math.round(((projectedTotalSpend / avgHistoricalSpend) - 1) * 100)}% acima da sua média. Atenção!`;
         icon = 'i';
     } else if (maxLimit > 0 && projectedTotalSpend >= (maxLimit * 0.9)) {
         state = 'warning';
-        title = 'AtenÃ§Ã£o ao Limite da Banca';
-        desc = `VocÃª vai consumir quase todo o seu saldo livre (ProjeÃ§Ã£o: R$ ${formatCurrency(projectedTotalSpend)}). Segure as compras nÃ£o essenciais.`;
+        title = 'Atenção ao Limite da Banca';
+        desc = `Você vai consumir quase todo o seu saldo livre (Projeção: R$ ${formatCurrency(projectedTotalSpend)}). Segure as compras não essenciais.`;
         icon = '!';
     }
     alertBox.className = `smart-alert-card ${state}`;
@@ -4040,10 +4040,10 @@
         let totalIn = 0;
         let totalOut = 0;
         filtered.forEach(e => e.isIncome ? totalIn += Number(e.amount) || 0 : totalOut += Number(e.amount) || 0);
-        summaryEl.innerText = `${filtered.length} lanÃ§amento(s) - Entradas: R$ ${formatCurrency(totalIn)} - SaÃ­das: R$ ${formatCurrency(totalOut)}`;
+        summaryEl.innerText = `${filtered.length} lançamento(s) - Entradas: R$ ${formatCurrency(totalIn)} - Saídas: R$ ${formatCurrency(totalOut)}`;
     }
     if (filtered.length === 0) {
-        list.innerHTML = `<p style="text-align: center; color: var(--text-muted); padding: 1.5rem 0;">Nenhuma movimentaÃ§Ã£o encontrada.</p>`;
+        list.innerHTML = `<p style="text-align: center; color: var(--text-muted); padding: 1.5rem 0;">Nenhuma movimentação encontrada.</p>`;
         return;
     }
     list.innerHTML = filtered.map(exp => {
@@ -4053,7 +4053,7 @@
         if (exp.category === 'Ganho') catClass = 'cat-ganho';
         const symbol = exp.isIncome ? '+' : '-';
         const colorValue = exp.isIncome ? 'var(--success)' : 'var(--text-main)';
-        const recurringBadge = exp.isRecurring ? `<span class="category-badge" style="background-color: var(--primary); padding: 0.15rem 0.5rem; font-size: 0.65rem;" title="LanÃ§ado mensalmente">â†» Assinatura</span>` : '';
+        const recurringBadge = exp.isRecurring ? `<span class="category-badge" style="background-color: var(--primary); padding: 0.15rem 0.5rem; font-size: 0.65rem;" title="Lançado mensalmente">↻ Assinatura</span>` : '';
         const installmentBadge = exp.installmentTotal ? `<span class="category-badge" style="background-color: var(--warning); color:#1e293b; padding: 0.15rem 0.5rem; font-size: 0.65rem;" title="Parcela">${exp.installmentIndex}/${exp.installmentTotal}</span>` : '';
         return `
             <div class="expense-item" style="border-left: 4px solid ${exp.isIncome ? 'var(--success)' : 'var(--danger)'};">
@@ -4081,7 +4081,7 @@
         const canvas = document.getElementById('expenseChart');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        myPieChart = new Chart(ctx, { type: 'doughnut', data: { labels: ['Comum', 'Inesperado', 'CrÃ©dito'], datasets: [{ data: dataValues, backgroundColor: ['#10b981', '#ef4444', '#f59e0b'], borderWidth: 2, borderColor: 'transparent' }] }, options: { responsive: true, maintainAspectRatio: false, animation: { duration: 160, easing: 'easeOutCubic' }, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12 } } }, cutout: '75%' } });
+        myPieChart = new Chart(ctx, { type: 'doughnut', data: { labels: ['Comum', 'Inesperado', 'Crédito'], datasets: [{ data: dataValues, backgroundColor: ['#10b981', '#ef4444', '#f59e0b'], borderWidth: 2, borderColor: 'transparent' }] }, options: { responsive: true, maintainAspectRatio: false, animation: { duration: 160, easing: 'easeOutCubic' }, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12 } } }, cutout: '75%' } });
     }
     updateChartStyles();
 }
@@ -4103,7 +4103,7 @@
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (mainLineChart) { mainLineChart.data.labels = labels; mainLineChart.data.datasets[0].data = dataValues; mainLineChart.update('none'); }
-    else { mainLineChart = new Chart(ctx, { type: 'line', data: { labels, datasets: [{ label: 'EvoluÃ§Ã£o da Banca (R$)', data: dataValues, borderColor: '#2563eb', backgroundColor: 'rgba(37, 99, 235, 0.12)', borderWidth: 3, tension: 0.35, fill: true, pointBackgroundColor: '#1d4ed8', pointBorderColor: '#ffffff', pointRadius: 3, pointHoverRadius: 5 }] }, options: { responsive: true, maintainAspectRatio: false, animation: { duration: 160, easing: 'easeOutCubic' }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) { return ` R$ ${formatCurrency(context.parsed.y)}`; } } } }, scales: { x: { grid: { color: 'var(--border-color)' } }, y: { grid: { color: 'var(--border-color)' } } } } }); }
+    else { mainLineChart = new Chart(ctx, { type: 'line', data: { labels, datasets: [{ label: 'Evolução da Banca (R$)', data: dataValues, borderColor: '#2563eb', backgroundColor: 'rgba(37, 99, 235, 0.12)', borderWidth: 3, tension: 0.35, fill: true, pointBackgroundColor: '#1d4ed8', pointBorderColor: '#ffffff', pointRadius: 3, pointHoverRadius: 5 }] }, options: { responsive: true, maintainAspectRatio: false, animation: { duration: 160, easing: 'easeOutCubic' }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) { return ` R$ ${formatCurrency(context.parsed.y)}`; } } } }, scales: { x: { grid: { color: 'var(--border-color)' } }, y: { grid: { color: 'var(--border-color)' } } } } }); }
     updateChartStyles();
 }
 
@@ -4121,7 +4121,7 @@
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (myLineChart) { myLineChart.data.labels = labels; myLineChart.data.datasets[0].data = dataValues; myLineChart.update('none'); }
-    else { myLineChart = new Chart(ctx, { type: 'line', data: { labels, datasets: [{ label: 'Saldo DisponÃ­vel Acumulado (R$)', data: dataValues, borderColor: '#2563eb', backgroundColor: 'rgba(37, 99, 235, 0.12)', borderWidth: 3, tension: 0.35, fill: true, pointBackgroundColor: '#1d4ed8', pointBorderColor: '#ffffff', pointRadius: 4, pointHoverRadius: 6 }] }, options: { responsive: true, maintainAspectRatio: false, animation: { duration: 160, easing: 'easeOutCubic' }, plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { weight: 600 } } }, tooltip: { callbacks: { label: function(context) { return ` R$ ${formatCurrency(context.parsed.y)}`; } } } }, scales: { x: { title: { display: true, text: 'Dias do MÃªs Selecionado', font: { weight: 600 } }, grid: { color: 'var(--border-color)' } }, y: { title: { display: true, text: 'Valor Acumulado (R$)', font: { weight: 600 } }, grid: { color: 'var(--border-color)' } } } } }); }
+    else { myLineChart = new Chart(ctx, { type: 'line', data: { labels, datasets: [{ label: 'Saldo Disponível Acumulado (R$)', data: dataValues, borderColor: '#2563eb', backgroundColor: 'rgba(37, 99, 235, 0.12)', borderWidth: 3, tension: 0.35, fill: true, pointBackgroundColor: '#1d4ed8', pointBorderColor: '#ffffff', pointRadius: 4, pointHoverRadius: 6 }] }, options: { responsive: true, maintainAspectRatio: false, animation: { duration: 160, easing: 'easeOutCubic' }, plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { weight: 600 } } }, tooltip: { callbacks: { label: function(context) { return ` R$ ${formatCurrency(context.parsed.y)}`; } } } }, scales: { x: { title: { display: true, text: 'Dias do Mês Selecionado', font: { weight: 600 } }, grid: { color: 'var(--border-color)' } }, y: { title: { display: true, text: 'Valor Acumulado (R$)', font: { weight: 600 } }, grid: { color: 'var(--border-color)' } } } } }); }
     updateChartStyles();
 }
 
@@ -4144,7 +4144,7 @@
     }
 
     function deleteSavingGoal(id) {
-        if(confirm("Deseja realmente excluir esta meta de economia? O dinheiro jÃ¡ transferido para ela continuarÃ¡ registrado como saÃ­da no seu histÃ³rico principal.")) {
+        if(confirm("Deseja realmente excluir esta meta de economia? O dinheiro já transferido para ela continuará registrado como saída no seu histórico principal.")) {
             savings = savings.filter(s => s.id !== id);
             saveToLocalStorage();
             renderSavings();
@@ -4152,13 +4152,13 @@
     }
 
     function addFundsToGoal(id) {
-        const amountStr = prompt("Quanto vocÃª deseja guardar agora para esta meta? (Use ponto ou vÃ­rgula para centavos)");
+        const amountStr = prompt("Quanto você deseja guardar agora para esta meta? (Use ponto ou vírgula para centavos)");
         if (!amountStr) return;
         
         const amount = parseFloat(amountStr.replace(',', '.'));
         
         if (isNaN(amount) || amount <= 0) {
-            alert("Por favor, insira um valor vÃ¡lido maior que zero.");
+            alert("Por favor, insira um valor válido maior que zero.");
             return;
         }
 
@@ -4167,7 +4167,7 @@
             const goal = savings[goalIndex];
             
             if (goal.current + amount > goal.target) {
-                alert(`O valor mÃ¡ximo que falta para atingir a meta Ã© R$ ${formatCurrency(goal.target - goal.current)}.`);
+                alert(`O valor máximo que falta para atingir a meta é R$ ${formatCurrency(goal.target - goal.current)}.`);
                 return;
             }
 
@@ -4198,25 +4198,25 @@
         const goal = savings[goalIndex];
 
         if (goal.current <= 0) {
-            alert("NÃ£o hÃ¡ saldo para retirar nesta meta.");
+            alert("Não há saldo para retirar nesta meta.");
             return;
         }
 
-        const wantsToWithdraw = confirm("VocÃª realmente precisa retirar esse dinheiro? Seu sonho se distÃ¢ncia cada vez mais :(");
+        const wantsToWithdraw = confirm("Você realmente precisa retirar esse dinheiro? Seu sonho se distância cada vez mais :(");
         if (!wantsToWithdraw) return;
 
-        const amountStr = prompt(`Quanto deseja retirar? (MÃ¡ximo disponÃ­vel: R$ ${formatCurrency(goal.current)})`);
+        const amountStr = prompt(`Quanto deseja retirar? (Máximo disponível: R$ ${formatCurrency(goal.current)})`);
         if (!amountStr) return;
         
         const amount = parseFloat(amountStr.replace(',', '.'));
         
         if (isNaN(amount) || amount <= 0) {
-            alert("Por favor, insira um valor vÃ¡lido maior que zero.");
+            alert("Por favor, insira um valor válido maior que zero.");
             return;
         }
 
         if (amount > goal.current) {
-            alert(`Saldo insuficiente na meta. O valor mÃ¡ximo para retirada Ã© R$ ${formatCurrency(goal.current)}.`);
+            alert(`Saldo insuficiente na meta. O valor máximo para retirada é R$ ${formatCurrency(goal.current)}.`);
             return;
         }
 
@@ -4276,7 +4276,7 @@
                     </div>
                     <div style="display: flex; justify-content: space-between; margin-top: 0.4rem;">
                         <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">${pct.toFixed(1)}%</span>
-                        ${isCompleted ? '<span style="font-size: 0.75rem; color: var(--success); font-weight: 700;">ParabÃ©ns! Meta Atingida! ðŸŽ‰</span>' : ''}
+                        ${isCompleted ? '<span style="font-size: 0.75rem; color: var(--success); font-weight: 700;">Parabéns! Meta Atingida! 🎉</span>' : ''}
                     </div>
                 </div>
                 
@@ -4285,7 +4285,7 @@
                             style="flex: 1; padding: 0.6rem; font-size: 0.85rem;" 
                             ${isCompleted ? 'disabled style="opacity: 0.6; cursor: not-allowed;"' : ''}
                             onclick="addFundsToGoal(${goal.id})">
-                        ${isCompleted ? 'ConcluÃ­da' : 'Guardar'}
+                        ${isCompleted ? 'Concluída' : 'Guardar'}
                     </button>
                     <button class="btn" 
                             style="flex: 1; padding: 0.6rem; font-size: 0.85rem; background-color: transparent; border: 1px solid var(--border-color); color: var(--text-main);" 
@@ -4762,7 +4762,7 @@
 
     if (currentUser) render();
     
-    // Timer para atualizar os relÃ³gios da quarentena a cada minuto
+    // Timer para atualizar os relógios da quarentena a cada minuto
     setInterval(renderWishes, 60000);
 </script>
 <script src="assets/brand-update.js"></script>
