@@ -555,6 +555,206 @@
                         font-size: 0.56rem;
                     }
                 }
+                @media (max-width: 900px) {
+                    :root {
+                        --mobile-content-max: 480px;
+                        --mobile-page-gutter: clamp(0.75rem, 4vw, 1rem);
+                        --mobile-nav-height: 88px;
+                    }
+                    html {
+                        width: 100% !important;
+                        max-width: 100% !important;
+                        min-width: 0 !important;
+                        overflow-x: hidden !important;
+                        overflow-y: auto;
+                        -webkit-overflow-scrolling: touch;
+                    }
+                    body:not(.auth-locked) {
+                        width: 100% !important;
+                        max-width: 100% !important;
+                        min-width: 0 !important;
+                        position: static !important;
+                        overflow-x: hidden !important;
+                        overflow-y: visible !important;
+                        overscroll-behavior-y: auto;
+                        touch-action: auto;
+                        -webkit-overflow-scrolling: touch;
+                    }
+                    .main-content,
+                    .sidebar:hover ~ .main-content {
+                        box-sizing: border-box;
+                        width: 100% !important;
+                        max-width: 100% !important;
+                        min-width: 0 !important;
+                        margin-left: 0 !important;
+                        margin-right: 0 !important;
+                        contain: none !important;
+                        overflow: visible !important;
+                        padding-top: calc(0.85rem + env(safe-area-inset-top));
+                        padding-left: max(var(--mobile-page-gutter), env(safe-area-inset-left));
+                        padding-right: max(var(--mobile-page-gutter), env(safe-area-inset-right));
+                        padding-bottom: calc(var(--mobile-nav-height) + 1rem + env(safe-area-inset-bottom));
+                    }
+                    .main-content > header,
+                    .spa-view > .container,
+                    .spa-view > section.card,
+                    .spa-view > .card,
+                    #view-main > .container,
+                    #view-historico > section.card,
+                    #view-evolucao > section.card,
+                    #view-economias > .container,
+                    #view-quarentena > .quarantine-grid {
+                        box-sizing: border-box;
+                        width: 100% !important;
+                        max-width: min(100%, var(--mobile-content-max)) !important;
+                        margin-left: auto !important;
+                        margin-right: auto !important;
+                    }
+                    @supports (width: 100svw) {
+                        .main-content > header,
+                        .spa-view > .container,
+                        .spa-view > section.card,
+                        .spa-view > .card,
+                        #view-main > .container,
+                        #view-historico > section.card,
+                        #view-evolucao > section.card,
+                        #view-economias > .container,
+                        #view-quarentena > .quarantine-grid {
+                            max-width: min(calc(100svw - 1.5rem), var(--mobile-content-max)) !important;
+                        }
+                    }
+                    .container,
+                    .forms-grid,
+                    .summary-box,
+                    .savings-grid,
+                    .quarantine-grid,
+                    #dashboard-column,
+                    #forms-column,
+                    #view-economias .container > div,
+                    #view-economias section.card,
+                    #savings-list,
+                    #expense-list {
+                        box-sizing: border-box;
+                        width: 100% !important;
+                        max-width: 100% !important;
+                        min-width: 0 !important;
+                        margin-left: auto !important;
+                        margin-right: auto !important;
+                        overflow: visible !important;
+                    }
+                    .card,
+                    .summary-card,
+                    .smart-alert-card,
+                    .expense-item,
+                    .saving-card,
+                    .wish-item {
+                        box-sizing: border-box;
+                        width: 100% !important;
+                        max-width: 100% !important;
+                        min-width: 0 !important;
+                    }
+                    .main-content > header {
+                        align-items: center;
+                    }
+                    .header-brand {
+                        width: 100%;
+                        max-width: 100%;
+                        grid-template-columns: minmax(0, 132px) minmax(0, 1fr);
+                    }
+                    .header-brand .brand-logo-wrap,
+                    .brand-logo-wrap {
+                        justify-self: end;
+                    }
+                    .header-brand-title {
+                        overflow-wrap: normal;
+                        word-break: normal;
+                    }
+                    .header-actions,
+                    .budget-control {
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                    #view-historico section.card > div[style*="grid-template-columns"],
+                    #view-historico section.card > div[style*="display:grid"] {
+                        display: grid !important;
+                        grid-template-columns: 1fr !important;
+                        width: 100% !important;
+                        max-width: 100% !important;
+                    }
+                    #filter-category,
+                    #filter-search,
+                    #filter-from,
+                    #filter-to,
+                    #view-historico .flatpickr-input,
+                    #view-historico .form-control,
+                    #view-historico button {
+                        display: block;
+                        box-sizing: border-box;
+                        width: 100% !important;
+                        max-width: 100% !important;
+                    }
+                    .saving-card {
+                        overflow: hidden;
+                    }
+                    .saving-header,
+                    .saving-amounts,
+                    .wish-header,
+                    .wish-info,
+                    .wish-footer,
+                    .wish-actions,
+                    .expense-details,
+                    .expense-value {
+                        width: 100%;
+                        max-width: 100%;
+                        min-width: 0;
+                    }
+                    .saving-amounts {
+                        grid-template-columns: 1fr !important;
+                        justify-items: start;
+                        text-align: left;
+                    }
+                    input,
+                    select,
+                    textarea,
+                    button,
+                    .form-control,
+                    .btn,
+                    .picker-trigger {
+                        box-sizing: border-box;
+                        max-width: 100% !important;
+                    }
+                    .sidebar {
+                        position: fixed !important;
+                        top: auto !important;
+                        left: 50% !important;
+                        right: auto !important;
+                        bottom: 0 !important;
+                        width: calc(100% - 0.5rem) !important;
+                        max-width: 520px !important;
+                        min-width: 0 !important;
+                        transform: translate3d(-50%, 0, 0) !important;
+                        overflow: hidden !important;
+                        overscroll-behavior: contain;
+                        -webkit-overflow-scrolling: touch;
+                    }
+                    @supports (width: 100svw) {
+                        .sidebar {
+                            width: min(calc(100svw - 0.5rem), 520px) !important;
+                        }
+                    }
+                    body.keyboard-open .sidebar {
+                        transform: translate3d(-50%, calc(100% + env(safe-area-inset-bottom)), 0) !important;
+                    }
+                    .sidebar-nav {
+                        width: 100% !important;
+                        max-width: 100% !important;
+                        min-width: 0 !important;
+                    }
+                    .sidebar-nav li a,
+                    .sidebar:hover .sidebar-nav li a {
+                        justify-content: center;
+                    }
+                }
             `;
             document.head.appendChild(style);
         }
@@ -605,12 +805,22 @@
             return Boolean(element?.matches?.(fieldSelector));
         }
 
+        function hasHorizontalDrift() {
+            return Math.abs(window.scrollX || 0) > 0
+                || Math.abs(document.documentElement?.scrollLeft || 0) > 0
+                || Math.abs(document.body?.scrollLeft || 0) > 0;
+        }
+
         function resetHorizontalScroll() {
-            if (window.scrollX !== 0) {
-                window.scrollTo(0, window.scrollY);
-            }
+            if (!hasHorizontalDrift()) return;
+            window.scrollTo(0, window.scrollY);
             if (document.documentElement) document.documentElement.scrollLeft = 0;
             if (document.body) document.body.scrollLeft = 0;
+        }
+
+        function scheduleHorizontalClamp() {
+            if (!isMobileWidth() || !hasHorizontalDrift()) return;
+            window.requestAnimationFrame(resetHorizontalScroll);
         }
 
         function syncViewportHeight() {
@@ -655,7 +865,7 @@
             setKeyboardState(true);
             window.clearTimeout(focusTimer);
             focusTimer = window.setTimeout(() => {
-                event.target.scrollIntoView?.({ block: 'center', inline: 'nearest', behavior: 'smooth' });
+                event.target.scrollIntoView?.({ block: 'center', inline: 'nearest', behavior: 'auto' });
                 resetHorizontalScroll();
             }, 180);
         }, true);
@@ -673,12 +883,12 @@
 
         window.addEventListener('resize', scheduleViewportSync, { passive: true });
         window.addEventListener('orientationchange', () => window.setTimeout(scheduleViewportSync, 250), { passive: true });
-        window.addEventListener('scroll', resetHorizontalScroll, { passive: true });
+        window.addEventListener('scroll', scheduleHorizontalClamp, { passive: true });
         window.addEventListener('pageshow', scheduleViewportSync, { passive: true });
 
         if (window.visualViewport) {
             window.visualViewport.addEventListener('resize', scheduleViewportSync, { passive: true });
-            window.visualViewport.addEventListener('scroll', resetHorizontalScroll, { passive: true });
+            window.visualViewport.addEventListener('scroll', scheduleHorizontalClamp, { passive: true });
         }
 
         if (mobileQuery.addEventListener) {
