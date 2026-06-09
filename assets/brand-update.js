@@ -754,6 +754,11 @@
                     .sidebar:hover .sidebar-nav li a {
                         justify-content: center;
                     }
+                    input,
+                    select,
+                    textarea {
+                        font-size: 16px !important;
+                    }
                 }
             `;
             document.head.appendChild(style);
@@ -784,8 +789,57 @@
             brand.appendChild(title);
         }
 
+        installPageZoomLock();
         installMobileStability();
         installMobileViewPolish();
+    }
+
+    function installPageZoomLock() {
+        if (window.__sdwPageZoomLockInstalled) return;
+        window.__sdwPageZoomLockInstalled = true;
+
+        const viewportContent = 'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover';
+        let viewport = document.querySelector('meta[name="viewport"]');
+        if (!viewport) {
+            viewport = document.createElement('meta');
+            viewport.setAttribute('name', 'viewport');
+            document.head.prepend(viewport);
+        }
+        viewport.setAttribute('content', viewportContent);
+
+        const blockZoom = (event) => {
+            event.preventDefault();
+        };
+
+        const blockPinch = (event) => {
+            if ((event.touches && event.touches.length > 1) || (event.scale && event.scale !== 1)) {
+                event.preventDefault();
+            }
+        };
+
+        let lastTouchEnd = 0;
+        document.addEventListener('touchmove', blockPinch, { capture: true, passive: false });
+        document.addEventListener('gesturestart', blockZoom, { capture: true, passive: false });
+        document.addEventListener('gesturechange', blockZoom, { capture: true, passive: false });
+        document.addEventListener('gestureend', blockZoom, { capture: true, passive: false });
+        document.addEventListener('touchend', (event) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, { capture: true, passive: false });
+        document.addEventListener('wheel', (event) => {
+            if (event.ctrlKey || event.metaKey) {
+                event.preventDefault();
+            }
+        }, { capture: true, passive: false });
+        document.addEventListener('keydown', (event) => {
+            if (!(event.ctrlKey || event.metaKey)) return;
+            if (['+', '=', '-', '_', '0'].includes(event.key)) {
+                event.preventDefault();
+            }
+        }, true);
     }
 
     function installMobileStability() {
