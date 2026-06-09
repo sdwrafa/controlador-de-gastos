@@ -760,6 +760,78 @@
                         font-size: 16px !important;
                     }
                 }
+                @media (min-width: 901px) {
+                    :root {
+                        --desktop-sidebar-collapsed: 76px;
+                        --desktop-sidebar-open: 224px;
+                    }
+                    .sidebar {
+                        width: var(--desktop-sidebar-collapsed) !important;
+                        transition:
+                            width 280ms cubic-bezier(0.22, 1, 0.36, 1),
+                            background-color 180ms ease,
+                            border-color 180ms ease,
+                            box-shadow 180ms ease !important;
+                        will-change: width;
+                        overflow-x: hidden;
+                    }
+                    .sidebar:hover {
+                        width: var(--desktop-sidebar-open) !important;
+                    }
+                    .sidebar-trigger {
+                        display: flex !important;
+                    }
+                    .sidebar-logo {
+                        opacity: 0 !important;
+                        transform: translate3d(-8px, 0, 0) !important;
+                        padding-left: 1.5rem !important;
+                        transition:
+                            opacity 180ms ease,
+                            transform 220ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+                        pointer-events: none;
+                    }
+                    .sidebar:hover .sidebar-logo {
+                        opacity: 1 !important;
+                        transform: translate3d(0, 0, 0) !important;
+                        transition-delay: 80ms !important;
+                        pointer-events: auto;
+                    }
+                    .sidebar-nav li a,
+                    .sidebar:hover .sidebar-nav li a {
+                        justify-content: flex-start !important;
+                    }
+                    .nav-text {
+                        max-width: 0 !important;
+                        opacity: 0 !important;
+                        overflow: hidden;
+                        transform: translate3d(-8px, 0, 0) !important;
+                        transition:
+                            max-width 240ms cubic-bezier(0.22, 1, 0.36, 1),
+                            opacity 180ms ease,
+                            transform 220ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+                    }
+                    .sidebar:hover .nav-text {
+                        max-width: 160px !important;
+                        opacity: 1 !important;
+                        transform: translate3d(0, 0, 0) !important;
+                    }
+                    .main-content,
+                    .sidebar:hover ~ .main-content {
+                        transition:
+                            margin-left 280ms cubic-bezier(0.22, 1, 0.36, 1),
+                            max-width 280ms cubic-bezier(0.22, 1, 0.36, 1),
+                            background-color 180ms ease !important;
+                        will-change: margin-left, max-width;
+                    }
+                    .main-content {
+                        margin-left: var(--desktop-sidebar-collapsed) !important;
+                        max-width: calc(100vw - var(--desktop-sidebar-collapsed)) !important;
+                    }
+                    .sidebar:hover ~ .main-content {
+                        margin-left: var(--desktop-sidebar-open) !important;
+                        max-width: calc(100vw - var(--desktop-sidebar-open)) !important;
+                    }
+                }
             `;
             document.head.appendChild(style);
         }
